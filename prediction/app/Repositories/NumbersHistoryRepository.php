@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
-class Numbers3HistoryRepository
+use App\Models\Entities;
+
+class NumbersHistoryRepository
 {
     private static function getResource()
     {
@@ -18,4 +20,13 @@ class Numbers3HistoryRepository
         $numbersList = self::getResource();
         return $numbersList;
     }
+
+    public static function toEntity()
+    {
+        $numbersList = self::getResource();
+        foreach($numbersList as $key => $numbers) {
+            $list[] = new Entities\Numbers(strlen($numbers['numbers']),$key,$numbers['date'],$numbers['numbers']);
+        }
+        return new Entities\NumbersHistory($list);
+    } 
 }
