@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Repositories;
+use App\Repositories\Numbers3HistoryRepository;
 
 class TopController extends Controller
 {
     public function index(Request $request)
     {
-        $data = [
-            'msg' => "画像を入力してください",
-        ];
-        return view('index', $data);
+        $data = Numbers3HistoryRepository::findAllHistory();
+       // var_dump($data);
+        return view('index', compact('data'));
     }
 }
