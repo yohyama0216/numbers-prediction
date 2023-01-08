@@ -24,6 +24,21 @@ class Numbers3 {
         return $this->numbers;
     }
 
+    public function getDigit100()
+    {
+        return substr($this->toString(),0,1);
+    }
+
+    public function getDigit10()
+    {
+        return substr($this->toString(),1,1);
+    }
+
+    public function getDigit1()
+    {
+        return substr($this->toString(),2,1);
+    }
+
     public function isSameDigit()
     {
         return count(array_unique($this->numbers)) == 1;

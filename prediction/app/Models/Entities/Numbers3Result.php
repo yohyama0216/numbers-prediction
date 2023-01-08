@@ -37,4 +37,18 @@ class Numbers3Result {
     {
         return $this->Numbers;
     }
+
+    public function isStraightHit($numbers)
+    {
+        return $this->Numbers->toString() == $numbers;
+    }
+
+    public function isBoxHit($numbers)
+    {
+        $arr1 = str_split($this->Numbers->toString());
+        sort($arr1);
+        $arr2 = str_split($numbers);
+        sort($arr2);        
+        return implode($arr1) == implode($arr2);
+    }
 }
