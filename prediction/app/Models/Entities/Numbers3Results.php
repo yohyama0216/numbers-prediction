@@ -4,22 +4,7 @@ namespace App\Models\Entities;
 
 use ArrayObject;
 
-class NumbersHistory extends ArrayObject {
-
-
-    // /*
-    //  *  過去データmodel作成
-    //  */
-    // private function createPastData($data, $start, $end) {
-    //     $result = [];
-    //     if ($start && $end) {
-    //         $data = array_slice($data, $start, $end);
-    //     }
-    //     foreach ($data as $key => $item) {
-    //         $result[] = new Numbers(3, $key,$item['date'],$item['numbers']);
-    //     }
-    //     return $result;
-    // }
+class Numbers3Results extends ArrayObject {
 
     // // n回以内に今の数字と同じ数字が存在しているか
     // public function inPrevNumbers($index,$times)

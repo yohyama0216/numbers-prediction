@@ -4,7 +4,7 @@
 <td>
 @foreach($data as $key => $item)
     <tr>
-        <td>第{{$item->getRound()}}回 日時{{$item->getDate()}} 当選数字{{$item->getNumbersString()}}</td>
+        <td>第{{$item->getRound()}}回 日時{{$item->getDate()}} 当選数字{{$item->getNumbers()->toString()}}</td>
     </tr>
 @endforeach
 </td>

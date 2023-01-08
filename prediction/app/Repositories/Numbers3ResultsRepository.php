@@ -4,11 +4,11 @@ namespace App\Repositories;
 
 use App\Models\Entities;
 
-class NumbersHistoryRepository
+class Numbers3ResultsRepository
 {
     private static function getResource()
     {
-        $jsonPath = database_path()."/data/numbers3history.json";
+        $jsonPath = database_path()."/data/numbers3Results.json";
         if (file_exists($jsonPath)) {
             return json_decode(file_get_contents($jsonPath),true);
         }
@@ -21,12 +21,13 @@ class NumbersHistoryRepository
         return $numbersList;
     }
 
-    public static function toEntity()
+    public static function toEntity() // 名前かえる？
     {
         $numbersList = self::getResource();
+        $list = [];
         foreach($numbersList as $key => $numbers) {
-            $list[] = new Entities\Numbers(strlen($numbers['numbers']),$key,$numbers['date'],$numbers['numbers']);
+            $list[] = new Entities\Numbers3Result($key,$numbers['date'],$numbers['numbers']);
         }
-        return new Entities\NumbersHistory($list);
+        return new Entities\Numbers3Results($list);
     } 
 }
