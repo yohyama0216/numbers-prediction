@@ -4,8 +4,31 @@ namespace App\Models\Entities;
 
 use ArrayObject;
 
-class Numbers3Results extends ArrayObject {
+class Numbers3ResultList extends ArrayObject {
 
+    public function sortByDate($order = 'desc')
+    {
+        $this->uasort(function($a,$b) use ($order) {
+            if ($order == 'desc') {
+                return $a->getDate() < $b->getDate();
+            } else {
+                return $a->getDate() > $b->getDate();
+            }
+        });
+    }
+    
+    public function getLatestResult()
+    {
+        if (empty($this->getArrayCopy())) {
+            return null;
+        }
+        
+        $this->sortByDate('asc');
+        $lastKey = array_key_last($this->getArrayCopy());
+        return $this[$lastKey];
+    }
+    
+    
     // // n回以内に今の数字と同じ数字が存在しているか
     // public function inPrevNumbers($index,$times)
     // {

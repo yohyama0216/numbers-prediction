@@ -4,11 +4,11 @@ namespace App\Repositories;
 
 use App\Models\Entities;
 
-class Numbers3ResultsRepository
+class Numbers3ResultListRepository
 {
     private static function getResource()
     {
-        $jsonPath = database_path()."/data/numbers3Results.json";
+        $jsonPath = database_path()."/data/Numbers3ResultList.json";
         if (file_exists($jsonPath)) {
             return json_decode(file_get_contents($jsonPath),true);
         }
@@ -28,6 +28,6 @@ class Numbers3ResultsRepository
         foreach($numbersList as $key => $numbers) {
             $list[] = new Entities\Numbers3Result($key,$numbers['date'],$numbers['numbers']);
         }
-        return new Entities\Numbers3Results($list);
+        return new Entities\Numbers3ResultList($list);
     } 
 }
