@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\TopController@index');
+Route::get('/backtest', 'App\Http\Controllers\BacktestController@index');

@@ -40,6 +40,24 @@ class Numbers3Result {
         return $this->Numbers;
     }
 
+    public function checkNumbers($numbersList)
+    {
+        $hitResult = [];
+        $straightReturn = 90000;
+        $boxReturn = 15000;
+        $cost = count($numbersList) * 200;
+        foreach($numbersList as $numbers) {
+            if ($this->isStraightHit($numbers)) {
+                $hitResult[] = new HitResult($this,'straight',$straightReturn,$cost);
+            } else if ($this->isBoxHit($numbers)) {
+                $hitResult[] = new HitResult($this,'box',$boxReturn,$cost);
+            } else {
+                $hitResult[] = new HitResult($this,'lose',0,$cost);
+            }
+        }
+        return $hitResult;
+    }
+
     public function isStraightHit($numbers)
     {
         return $this->Numbers->toString() == $numbers;
