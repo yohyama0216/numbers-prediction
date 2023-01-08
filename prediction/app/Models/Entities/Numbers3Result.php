@@ -2,10 +2,12 @@
 
 namespace App\Models\Entities;
 
+use DateTime;
+
 class Numbers3Result {
     private $numbersType = 3;
     private $round = "";
-    private $date = "";
+    private $DateTime = null;
     private $Numbers = null;
 
     public function __construct($round, $date, $numbers)
@@ -14,7 +16,7 @@ class Numbers3Result {
             return null;
         }
         $this->round = $round;
-        $this->date = $date;
+        $this->DateTime = new DateTime($date);
         $this->Numbers = new Numbers3($numbers);
     }
 
@@ -30,7 +32,7 @@ class Numbers3Result {
 
     public function getDate()
     {
-        return $this->date;
+        return $this->DateTime->format('Y/m/d');
     }
 
     public function getNumbers()
