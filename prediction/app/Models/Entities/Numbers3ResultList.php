@@ -27,6 +27,17 @@ class Numbers3ResultList extends ArrayObject {
         $lastKey = array_key_last($this->getArrayCopy());
         return $this[$lastKey];
     }
+
+    public function findResultByNumbers($numbers)
+    {
+        $list = [];
+        foreach($this as $item) {
+            if ($numbers == $item->getNumbers()->toString()) {
+                $list[] = $item;
+            }
+        }
+        return new self($list);
+    }
     
     
     // // n回以内に今の数字と同じ数字が存在しているか
