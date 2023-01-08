@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Repositories;
-use App\Http\Service;
-use App\Repositories\Numbers3ResultListRepository;
+use App\Services;
 
 class TopController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Numbers3ResultListRepository::toEntity();
+        $Numbers3ResultService = new Services\Numbers3ResultService();
+        $data = $Numbers3ResultService->findAll();
         return view('index', compact('data'));
     }
 }
