@@ -18,13 +18,21 @@ class BacktestService
 
     public function execute()
     {
+        $hitResultList = [];
+        $numbersList = $this->algorhythm->predict();
         foreach($this->resultList as $result) {
-            $hits = $result->checkNumbers($this->algorhythm->predict());
-            if (empty($hits)) {
-                continue ;
-            }
-            foreach($hits as $hit) {
-                $hitResultList[] = $hit;
+
+            $straightReturn = 90000;
+            $boxReturn = 15000;
+            $cost = count($numbersList) * 200;
+            foreach($numbersList as $numbers) {
+                if ($result->isStraightHit($numbers)) {
+                    $hitResultList[] = new Entities\HitResult($result,'straight',$straightReturn,$cost);
+                } else if ($result->isBoxHit($numbers)) {
+                    $hitResultList[] = new Entities\HitResult($result,'box',$boxReturn,$cost);
+                } else {
+                    $hitResultList[] = new Entities\HitResult($result,'lose',0,$cost);
+                }
             }
         }
         return new Entities\HitResultList($hitResultList);
