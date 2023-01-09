@@ -11,14 +11,10 @@ class DrawingNumbers3 {
     private $status = 0; // 0:未抽選
     private $DrawingNumbers3Result = null;
 
-    public function __construct($round, $date, $DrawingNumbers3Result)
+    public function __construct($round, $date)
     {
-        if ($this->numbersType != strlen($DrawingNumbers3Result->getNumbers()->toString())) {
-            return null;
-        }
         $this->round = $round;
         $this->DateTime = new DateTime($date);
-        $this->DrawingNumbers3Result = $DrawingNumbers3Result;
     }
 
     public function getNumbersType()
@@ -44,5 +40,10 @@ class DrawingNumbers3 {
     public function getDrawingNumbers3Result()
     {
         return $this->DrawingNumbers3Result;
+    }
+
+    public function setDrawingNumbers3Result($DrawingNumbers3Result)
+    {
+        return $this->DrawingNumbers3Result = $DrawingNumbers3Result;
     }
 }
