@@ -2,11 +2,17 @@
 
 namespace App\Models\Algorhythm;
 
+use App\Models\Entities;
+
 class SameNumbersAlgorhythm {
     
     public function predict()
     {
-        return range(111,999,111);
+        $NumbersList = [];
+        foreach(range(111,999,111) as $number) {
+            $NumbersList[] = new Entities\Numbers3($number);
+        }
+        return $NumbersList;
     }
 
     public function predictByPrevResultList($resultList)
@@ -17,7 +23,7 @@ class SameNumbersAlgorhythm {
         }
 
         foreach($resultList as $result) {
-            $list[] = $result->getNumbers()->toString();
+            $list[] = new Entities\Numbers3($result->getNumbers()->toString());
         }
         return $list;
     }

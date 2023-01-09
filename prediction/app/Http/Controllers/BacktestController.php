@@ -10,8 +10,8 @@ class BacktestController extends Controller
 {
     public function index(Request $request)
     {
-        $Numbers3ResultService = new Services\Numbers3ResultService();
-        $data = $Numbers3ResultService->findAll();
+        $DrawingNumbers3Service = new Services\DrawingNumbers3Service();
+        $data = $DrawingNumbers3Service->findAll();
         $BacktestService = new Services\BacktestService($data,new Algorhythm\SameNumbersAlgorhythm());
         $data = $BacktestService->execute();
         return view('backtest.index', compact('data'));

@@ -1,14 +1,14 @@
 <h1>テスト</h1>
 
 <table>
-<td>
 {{$data->displayTotalResult()}}
-@foreach($data as $key => $item)
+        <!--
+@foreach($data as $key => $result)
     <tr>
-        <td>
-           
-        </td>
+ <td> 
+           第{{$result->getResult()->getRound()}}回 {{$result->getType()}}
+        </td> 
     </tr>
 @endforeach
-</td>
+-->
 </table>

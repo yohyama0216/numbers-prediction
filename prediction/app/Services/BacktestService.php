@@ -7,32 +7,32 @@ use App\Repositories;
 
 class BacktestService
 {
-    private $resultList = null;
+    private $DrawingNumbers3List = null;
     private $algorhythm = null;
 
-    public function __construct($resultList,$algorhythm)
+    public function __construct($DrawingNumbers3List,$algorhythm)
     {
-        $this->resultList = $resultList;
+        $this->DrawingNumbers3List = $DrawingNumbers3List;
         $this->algorhythm = $algorhythm;
     }
 
     public function execute()
     {
         $hitResultList = [];
-        foreach($this->resultList as $key => $result) {
-            $prevResultList = $this->resultList->getPrevNumbers3ResultList($key+1,5);
-            $numbersList = $this->algorhythm->predictByPrevResultList($prevResultList);
+        foreach($this->DrawingNumbers3List as $key => $DrawingNumbers3) {
+            //$prevResultList = $this->resultList->getPrevNumbers3ResultList($key+1,5);
+            $numbersList = $this->algorhythm->predict();
 
             $straightReturn = 90000;
             $boxReturn = 15000;
             $cost = count($numbersList) * 200;
             foreach($numbersList as $numbers) {
-                if ($result->isStraightHit($numbers)) {
-                    $hitResultList[] = new Entities\HitResult($result,'straight',$straightReturn,$cost);
-                } else if ($result->isBoxHit($numbers)) {
-                    $hitResultList[] = new Entities\HitResult($result,'box',$boxReturn,$cost);
+                if ($DrawingNumbers3->getDrawingNumbers3Result()->isStraightHit($numbers)) {
+                    $hitResultList[] = new Entities\HitResult($DrawingNumbers3,'straight',$straightReturn,$cost);
+                } else if ($DrawingNumbers3->getDrawingNumbers3Result()->isBoxHit($numbers)) {
+                    $hitResultList[] = new Entities\HitResult($DrawingNumbers3,'box',$boxReturn,$cost);
                 } else {
-                    $hitResultList[] = new Entities\HitResult($result,'lose',0,$cost);
+                    $hitResultList[] = new Entities\HitResult($DrawingNumbers3,'lose',0,$cost);
                 }
             }
         }

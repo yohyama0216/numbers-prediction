@@ -6,9 +6,9 @@
     <tr>
         <td>
             第{{$item->getRound()}}回
-            日時{{$item->getDate()}}
-            当選数字{{$item->getNumbers()->toString()}}
-            100位 {{$item->getNumbers()->getDigit100()}}
+            日時{{$item->getDateTime()}}
+            当選数字{{$item->getDrawingNumbers3Result()->getNumbers()->toString()}}
+            100位 {{$item->getDrawingNumbers3Result()->getNumbers()->getDigit100()}}
         </td>
     </tr>
 @endforeach
