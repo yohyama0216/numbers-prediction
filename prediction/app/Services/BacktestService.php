@@ -19,8 +19,9 @@ class BacktestService
     public function execute()
     {
         $hitResultList = [];
-        $numbersList = $this->algorhythm->predict();
-        foreach($this->resultList as $result) {
+        foreach($this->resultList as $key => $result) {
+            $prevResultList = $this->resultList->getPrevNumbers3ResultList($key+1,5);
+            $numbersList = $this->algorhythm->predictByPrevResultList($prevResultList);
 
             $straightReturn = 90000;
             $boxReturn = 15000;

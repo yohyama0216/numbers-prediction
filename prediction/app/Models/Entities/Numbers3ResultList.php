@@ -38,7 +38,28 @@ class Numbers3ResultList extends ArrayObject {
         }
         return new self($list);
     }
+
+    public function getPrevNumbers3ResultList($start,$prev)
+    {
+        if ($start < $prev) {
+            return [];
+        }
+
+        $list = array_slice($this->getArrayCopy(),$start,$prev);
+        return new self($list);
+    }
     
+    // public function findResultByDate($startDate,$endDate='')
+    // {
+    //     $list = [];
+    //     foreach($this as $item) {
+    //         if ($startDate <= $item->getDate()) {
+
+    //             $list[] = $item;
+    //         }
+    //     }
+    //     return new self($list);
+    // }
     
     // // n回以内に今の数字と同じ数字が存在しているか
     // public function inPrevNumbers($index,$times)

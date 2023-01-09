@@ -17,6 +17,16 @@ class HitResult {
         $this->cost = $cost;
     }
 
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
     public function getReturn()
     {
         return $this->return;
