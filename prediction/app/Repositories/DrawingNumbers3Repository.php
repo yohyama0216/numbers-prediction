@@ -26,7 +26,8 @@ class DrawingNumbers3Repository
         $numbersList = self::getResource();
         $list = [];
         foreach($numbersList as $key => $numbers) {
-            $DrawingNumbers3Result = new Entities\DrawingNumbers3Result(new Entities\Numbers3($numbers['numbers']),0,0,0,0);
+            $PrizeNumbers3 = new Entities\PrizeNumbers3(0,0,0,0);
+            $DrawingNumbers3Result = new Entities\DrawingNumbers3Result(new Entities\Numbers3($numbers['numbers']),$PrizeNumbers3);
             $DrawingNumbers3 = new Entities\DrawingNumbers3($key,$numbers['date'],$DrawingNumbers3Result);
             $list[] = $DrawingNumbers3;
         }
