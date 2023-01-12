@@ -8,9 +8,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="file"></span>
-                    Orders
+                <a class="nav-link" href="/search">
+                    <span data-feather="search"></span>
+                    Search
                 </a>
             </li>
             <li class="nav-item">
