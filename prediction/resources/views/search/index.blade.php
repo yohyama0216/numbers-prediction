@@ -21,6 +21,7 @@
     <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
     <h2>検索結果</h2>
+    @if($data)
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
@@ -60,6 +61,9 @@
             </tbody>
         </table>
     </div>
+    @else
+    <div>見つかりませんでした。</div>
+    @endif
 </main>
 @endsection
 
