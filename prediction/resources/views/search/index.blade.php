@@ -1,9 +1,9 @@
-@extends('layouts.layout');
+@extends('layouts.layout')
 
 @section('title','ヘッダー')
 
 @section('content')
-<h1>テスト</h1>
+<h1>検索</h1>
 
 <table>
 <td>
