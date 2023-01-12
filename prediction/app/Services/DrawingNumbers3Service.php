@@ -19,8 +19,11 @@ class DrawingNumbers3Service
         return $this->DrawingNumbers3List;
     }
 
-    public function findByNumbers($Numbers)
+    public function search($SearchCondition)
     {
-        return $this->DrawingNumbers3List->findDrawingNumbers3ByNumbers($Numbers);
+        if (empty($SearchCondition) || !$SearchCondition->hasCondition()) {
+            return $this->DrawingNumbers3List;
+        }
+        return $this->DrawingNumbers3List->findByCondition($SearchCondition);
     }
 }

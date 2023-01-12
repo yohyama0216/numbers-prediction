@@ -28,11 +28,11 @@ class DrawingNumbers3List extends ArrayObject {
         return $this[$lastKey];
     }
 
-    public function findDrawingNumbers3ByNumbers($numbers)
+    public function findByCondition($SearchCondition)
     {
         $list = [];
-        foreach($this as $item) {
-            if ($numbers == $item->getDrawingNumbers3Result()->getNumbers()->toString()) {
+        foreach ($this as $item) {
+            if ($SearchCondition->match($item)) {
                 $list[] = $item;
             }
         }
