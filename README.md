@@ -15,4 +15,7 @@ numbers3から数字の規則は独立させる
 PHP (Laravel)
 Python（その他、機械学習）
 
-
+/ トップぺ0時
+/backtest　バックテスト
+/drawings 抽選と結果
+/statistics 統計

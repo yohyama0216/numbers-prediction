@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Entities;
 use App\Repositories;
 
-class StaticsService
+class StatisticsService
 {
     private $DrawingNumbers3List = null;
 
