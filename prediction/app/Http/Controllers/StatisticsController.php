@@ -13,6 +13,17 @@ class StatisticsController extends Controller
         $data = $DrawingNumbers3Service->findAll();
         $statisticsService = new Services\statisticsService($data);
         $data = $statisticsService->executeCounter();
+        $data = $this->convertForChart($data);
         return view('statistics.index', compact('data'));
+    }
+
+    private function convertForChart($data)
+    {
+        $str = "";
+        foreach($data as $key => $item){
+            $str .= "{x:$key,y:$item},";
+
+        }
+        return $str;
     }
 }
