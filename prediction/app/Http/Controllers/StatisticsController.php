@@ -13,7 +13,7 @@ class StatisticsController extends Controller
         $data = $DrawingNumbers3Service->findAll();
         $statisticsService = new Services\statisticsService($data);
         $data = $statisticsService->executeCounter();
-        $data = $this->convertForChart($data);
+        //$data = $this->convertForChart($data);
         return view('statistics.index', compact('data'));
     }
 

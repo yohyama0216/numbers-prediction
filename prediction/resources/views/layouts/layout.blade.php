@@ -51,7 +51,6 @@
     @include('layouts.headermenu')
     <div class="container-fluid">
         <div class="row">
-            @include('layouts.sidebarmenu', ['data' => 'data'])
             @yield('content')
         </div>
     </div>

@@ -51,3 +51,28 @@
     }
   })
 })()
+// var ctx = document.getElementById('mychart');
+// var myChart = new Chart(ctx, {
+//     type: 'bubble',
+//     data: {
+//         datasets: [{
+//             label: 'Number3当選数字',
+//             data: [
+//                 {{$data}}
+//             ],
+//             backgroundColor: '#f88',
+//         }],
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 min: 0,
+//                 max: 16
+//             },
+//             x: {
+//                 min: 0,
+//                 max: 999
+//             },
+//         },
+//     },
+// });

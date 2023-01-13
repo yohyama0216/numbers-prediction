@@ -1,49 +1,78 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.layout')
 
-<head>
-    <meta charset="utf-8">
-    <title>TEST</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>
-    <script
-  src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-</head>
-</head>
+@section('title','統計')
 
-<body>
-    <h1>各数字と出現回数</h1>
-    <div style="width:800px">
-        <canvas id="mychart"></canvas>
+@section('content')
+@include('layouts.sidebarmenu', ['current' => 'statistics'])
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">統計</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+            </button>
+        </div>
     </div>
-    <script>
-        var ctx = document.getElementById('mychart');
-        var myChart = new Chart(ctx, {
-            type: 'bubble',
-            data: {
-                datasets: [{
-                    label: 'Number3当選数字',
-                    data: [
-                        {{$data}}
-                    ],
-                    backgroundColor: '#f88',
-                }],
-            },
-            options: {
-                scales: {
-                    y: {
-                        min: 0,
-                        max: 16
-                    },
-                    x: {
-                        min: 0,
-                        max: 999
-                    },
-                },
-            },
-        });
-    </script>
-    </div>
-</body>
 
-</html>
+    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+    <h2>統計</h2>
+    <h3>数字と出現回数</h3>
+    @if($data)
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <!-- todo ちょっと見出し変えたい -->
+                    <th>数字</th>
+                    <th>出現回数</th>
+                    <th>当選数字</th>
+                    <th>ストレート</th>
+                    <th>当選口数</th>
+                    <th>ボックス</th>
+                    <th>当選口数</th>
+                    <th>セット</th>
+                    <th>当選口数</th>
+                    <th>ミニ</th>
+                    <th>当選口数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>
+                @foreach($data as $key => $item)
+                    <tr>
+                        <td>{{$key}}</td>
+                        <td>{{$item}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                @endforeach
+                </td>
+            </tbody>
+        </table>
+    </div>
+    @else
+    <div>見つかりませんでした。</div>
+    @endif
+</main>
+@endsection
+
+@section('side')
+  @parent
+  <ul>
+    <li>ccc</li>
+    <li>ddd</li>
+  </ul>
+@endsection
