@@ -21,7 +21,8 @@ class BacktestService
         $hitResultList = [];
         foreach($this->DrawingNumbers3List as $key => $DrawingNumbers3) {
             //$prevResultList = $this->resultList->getPrevNumbers3ResultList($key+1,5);
-            $numbersList = $this->algorhythm->predict();
+            $numbersList = $this->algorhythm->predict(); //正しくはGenerateMyNumbers;
+            // $hitResultList[]??/ = $DrawingNumbers3->calc($MyNumbers);
 
             $straightReturn = 90000;
             $boxReturn = 15000;
