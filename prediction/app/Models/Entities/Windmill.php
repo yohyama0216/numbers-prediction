@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Numbers;
+namespace App\Models\Entities;
 
 class Windmill {
 
