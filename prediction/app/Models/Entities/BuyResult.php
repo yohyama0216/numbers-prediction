@@ -2,7 +2,7 @@
 
 namespace App\Models\Entities;
 
-class HitResult {
+class BuyResult {
 
     private $result = '';
     private $type = '';

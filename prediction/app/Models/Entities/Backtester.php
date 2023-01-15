@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models\Entities;
+
+class Backtester {
+
+    private $DrawingNumbers3list = '';
+
+    public function __construct($DrawingNumbers3list)
+    {
+        $this->DrawingNumbers3list = $DrawingNumbers3list;
+    }
+
+    public function buySameDigitNumbers()
+    {        
+        $numbers = range(111,999);
+        foreach($numbers as $number) {
+            $BuyNumbers3List[] = new BuyNumbers3(new Numbers3($number),1);
+        }
+        $hitNumbers3ResultList = [];
+        foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
+            $hitNumbers3ResultList[] = new HitNumbers3Result($DrawingNumbers3,$BuyNumbers3List);
+        }
+        return new HitNumbers3ResultList($hitNumbers3ResultList);
+    }
+}

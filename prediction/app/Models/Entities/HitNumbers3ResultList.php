@@ -4,7 +4,7 @@ namespace App\Models\Entities;
 
 use ArrayObject;
 
-class HitResultList extends ArrayObject {
+class HitNumbers3ResultList extends ArrayObject {
     public function displayTotalResult()
     {
         $return = 0;

@@ -23,7 +23,7 @@
 
     <h2>統計</h2>
     <h3>数字と出現回数</h3>
-
+    {{$data->displayTotalResult()}}
 </main>
 @endsection
 
