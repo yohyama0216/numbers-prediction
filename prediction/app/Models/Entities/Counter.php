@@ -11,7 +11,7 @@ class Counter {
         $this->DrawingNumbers3list = $DrawingNumbers3list;
     }
 
-    public function countNumbers3()
+    public function countStraightNumbers3($border)
     {        
         $result = [];
         foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
@@ -26,18 +26,41 @@ class Counter {
         return $result;
     }
 
-    public function getType()
-    {
-        return $this->type;
+    public function countBoxNumbers3()
+    {        
+        $result = [];
+        foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
+            $numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers()->toString();
+            $stringParts = str_split($numbers);
+            sort($stringParts);
+            $numbers = implode($stringParts);
+            if (array_key_exists($numbers,$result)) {
+                $result[$numbers] += 1;
+            } else {
+                $result[$numbers] = 1;
+            }
+        }
+        arsort($result);
+        return $result;
     }
 
-    public function getReturn()
-    {
-        return $this->return;
-    }
-
-    public function getCost()
-    {
-        return $this->cost;
-    }
+    // 重くて無理
+    // public function countDoubleSerialNumbers3()
+    // {        
+    //     $result = [];
+    //     foreach($this->DrawingNumbers3list as $DrawingNumbers3First) {
+    //         $numbersFirst = $DrawingNumbers3First->getDrawingNumbers3Result()->getNumbers()->toString();
+    //         foreach ($this->DrawingNumbers3list as $DrawingNumbers3Second) {
+    //             $numbersSecond = $DrawingNumbers3Second->getDrawingNumbers3Result()->getNumbers()->toString();
+    //             $string = implode("→",[$numbersFirst,$numbersSecond]);
+    //             if (array_key_exists($string, $result)) {
+    //                 $result[$string] += 1;
+    //             } else {
+    //                 $result[$string] = 1;
+    //             }
+    //         }
+    //     }
+    //     arsort($result);
+    //     return $result;
+    // }
 }

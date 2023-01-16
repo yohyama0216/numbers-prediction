@@ -23,4 +23,20 @@ class Backtester {
         }
         return new HitNumbers3ResultList($hitNumbers3ResultList);
     }
+
+    /**
+     * 再頻出の数字だけを買う。（赤字）
+     */
+    public function buyFluentNumbers()
+    {        
+        $numbers = ['089'];
+        foreach($numbers as $number) {
+            $BuyNumbers3List[] = new BuyNumbers3(new Numbers3($number),1);
+        }
+        $hitNumbers3ResultList = [];
+        foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
+            $hitNumbers3ResultList[] = new HitNumbers3Result($DrawingNumbers3,$BuyNumbers3List);
+        }
+        return new HitNumbers3ResultList($hitNumbers3ResultList);
+    }
 }

@@ -17,6 +17,6 @@ class StatisticsService
     public function executeCounter()
     {
         $Counter = new Entities\Counter($this->DrawingNumbers3List);
-        return $Counter->countNumbers3();
+        return $Counter->countBoxNumbers3();
     }
 }

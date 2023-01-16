@@ -18,6 +18,6 @@ class BacktestService
     public function execute()
     {
         $Backtester = new Backtester($this->DrawingNumbers3List);
-        return $Backtester->buySameDigitNumbers();
+        return $Backtester->buyFluentNumbers();
     }
 }
