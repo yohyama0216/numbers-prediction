@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services;
 use App\Models\Algorhythm;
-use App\Models\Entities\SearchCondition;
+use App\Models\Entities\Common\SearchCondition;
 
 class SearchController extends Controller
 {

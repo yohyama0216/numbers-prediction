@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Models\Entities;
+namespace App\Models\Entities\Backtest;
+
+use App\Models\Entities\Common;
 
 class Backtester {
 
@@ -15,7 +17,7 @@ class Backtester {
     {        
         $numbers = range(111,999);
         foreach($numbers as $number) {
-            $BuyNumbers3List[] = new BuyNumbers3(new Numbers3($number),1);
+            $BuyNumbers3List[] = new BuyNumbers3(new Common\Numbers3($number),1);
         }
         $hitNumbers3ResultList = [];
         foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
@@ -31,7 +33,7 @@ class Backtester {
     {        
         $numbers = ['089'];
         foreach($numbers as $number) {
-            $BuyNumbers3List[] = new BuyNumbers3(new Numbers3($number),1);
+            $BuyNumbers3List[] = new BuyNumbers3(new Common\Numbers3($number),1);
         }
         $hitNumbers3ResultList = [];
         foreach($this->DrawingNumbers3list as $DrawingNumbers3) {

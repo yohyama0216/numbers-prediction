@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Entities;
+namespace App\Models\Entities\Backtest;
 
 class BuyNumbers3 {
     private $Numbers = '';

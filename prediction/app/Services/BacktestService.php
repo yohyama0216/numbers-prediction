@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Entities;
-use App\Models\Entities\Backtester;
+use App\Models\Entities\Backtest\Backtester;
 use App\Repositories;
 
 class BacktestService

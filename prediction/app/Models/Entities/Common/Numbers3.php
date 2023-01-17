@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Entities;
+namespace App\Models\Entities\Common;
 
 class Numbers3 {
     private $numbersType = 3; //不要？
@@ -50,11 +50,7 @@ class Numbers3 {
 
     public function isSameStraight($Numbers)
     {
-        $arr1 = str_split($this->toString());
-        sort($arr1);
-        $arr2 = str_split($Numbers->toString());
-        sort($arr2);        
-        return implode($arr1) == implode($arr2);
+        return $this->toString() == $Numbers->toString();
     }
     public function isSameDigit()
     {
