@@ -11,19 +11,14 @@ class Counter {
         $this->DrawingNumbers3list = $DrawingNumbers3list;
     }
 
-    public function countStraightNumbers3($border)
+    public function countStraightNumbers3()
     {        
-        $result = [];
+        $CountResultList = new CountResultList();
         foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers()->toString();
-            if (array_key_exists($numbers,$result)) {
-                $result[$numbers] += 1;
-            } else {
-                $result[$numbers] = 1;
-            }
+            $Numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
+            $CountResultList->addCountResult($Numbers);
         }
-        arsort($result);
-        return $result;
+        return $CountResultList->sortByCount();
     }
 
     public function countBoxNumbers3()

@@ -39,6 +39,23 @@ class Numbers3 {
         return substr($this->toString(),2,1);
     }
 
+    public function isSameBox($Numbers)
+    {
+        $arr1 = str_split($this->toString());
+        sort($arr1);
+        $arr2 = str_split($Numbers->toString());
+        sort($arr2);        
+        return implode($arr1) == implode($arr2);
+    }
+
+    public function isSameStraight($Numbers)
+    {
+        $arr1 = str_split($this->toString());
+        sort($arr1);
+        $arr2 = str_split($Numbers->toString());
+        sort($arr2);        
+        return implode($arr1) == implode($arr2);
+    }
     public function isSameDigit()
     {
         return count(array_unique($this->numbers)) == 1;
