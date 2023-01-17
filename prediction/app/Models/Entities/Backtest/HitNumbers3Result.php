@@ -15,7 +15,6 @@ class HitNumbers3Result {
     {
         $this->DrawingNumbers3 = $DrawingNumbers3;
         $this->BuyNumbers3List = $BuyNumbers3List;
-        $this->check();
     }
 
     public function addHitStraightCount()
@@ -48,21 +47,5 @@ class HitNumbers3Result {
         return $this->cost;
     }
 
-    public function check() //checkerに移すべき？
-    {       
-        $cost = 200;
-        foreach($this->BuyNumbers3List as $BuyNumbers3) {
-            $Numbers = $BuyNumbers3->getNumbers();
-            if ($this->DrawingNumbers3->getDrawingNumbers3Result()->isStraightHit($Numbers)) {
-                $straightReturn = 90000;
-                $this->addHitStraightCount();
-                $this->addReturn($straightReturn);
-            } else if ($this->DrawingNumbers3->getDrawingNumbers3Result()->isBoxHit($Numbers)) {
-                $boxReturn = 10000;
-                $this->addHitBoxCount();
-                $this->addReturn($boxReturn);
-            }
-            $this->addCost($cost);
-        }
-    }
+
 }

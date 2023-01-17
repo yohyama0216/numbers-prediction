@@ -12,7 +12,7 @@ class BacktestController extends Controller
     {
         $DrawingNumbers3Service = new Services\DrawingNumbers3Service();
         $data = $DrawingNumbers3Service->findAll();
-        $BacktestService = new Services\BacktestService($data,new Algorhythm\SameNumbersAlgorhythm());
+        $BacktestService = new Services\BacktestService($data);
         $data = $BacktestService->execute();
         return view('backtest.index', compact('data'));
     }

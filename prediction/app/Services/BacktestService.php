@@ -10,7 +10,7 @@ class BacktestService
 {
     private $DrawingNumbers3List = null;
 
-    public function __construct($DrawingNumbers3List,$algorhythm)
+    public function __construct($DrawingNumbers3List)
     {
         $this->DrawingNumbers3List = $DrawingNumbers3List;
     }
@@ -18,6 +18,6 @@ class BacktestService
     public function execute()
     {
         $Backtester = new Backtester($this->DrawingNumbers3List);
-        return $Backtester->buyFluentNumbers();
+        return $Backtester->buySameDigitNumbers();
     }
 }

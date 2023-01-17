@@ -19,11 +19,12 @@ class Backtester {
         foreach($numbers as $number) {
             $BuyNumbers3List[] = new BuyNumbers3(new Common\Numbers3($number),1);
         }
-        $hitNumbers3ResultList = [];
+        $HitNumbers3ResultList = new HitNumbers3ResultList();
         foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $hitNumbers3ResultList[] = new HitNumbers3Result($DrawingNumbers3,$BuyNumbers3List);
+            $HitNumbers3Result = HitChecker::check($DrawingNumbers3,$BuyNumbers3List);
+            $HitNumbers3ResultList[] = $HitNumbers3Result;
         }
-        return new HitNumbers3ResultList($hitNumbers3ResultList);
+        return $HitNumbers3ResultList;
     }
 
     /**
