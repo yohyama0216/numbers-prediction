@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Entities;
+use App\Models\Entities\Statistics;
 
 class StatisticsService
 {
@@ -15,7 +15,7 @@ class StatisticsService
 
     public function executeCounter()
     {
-        $Counter = new Entities\Counter($this->DrawingNumbers3List);
+        $Counter = new Statistics\Counter($this->DrawingNumbers3List);
         return $Counter->countStraightNumbers3();
     }
 }

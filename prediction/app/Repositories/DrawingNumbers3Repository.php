@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Entities;
+use App\Models\Entities\Common;
 
 class DrawingNumbers3Repository
 {
@@ -26,12 +26,12 @@ class DrawingNumbers3Repository
         $numbersList = self::getResource();
         $list = [];
         foreach($numbersList as $key => $numbers) {
-            $PrizeNumbers3 = new Entities\PrizeNumbers3(0,0,0,0);
-            $DrawingNumbers3 = new Entities\DrawingNumbers3($key,$numbers['date']);
-            $DrawingNumbers3Result = new Entities\DrawingNumbers3Result(new Entities\Numbers3($numbers['numbers']),$PrizeNumbers3);
+            $PrizeNumbers3 = new Common\PrizeNumbers3(0,0,0,0);
+            $DrawingNumbers3 = new Common\DrawingNumbers3($key,$numbers['date']);
+            $DrawingNumbers3Result = new Common\DrawingNumbers3Result(new Common\Numbers3($numbers['numbers']),$PrizeNumbers3);
             $DrawingNumbers3->setDrawingNumbers3Result($DrawingNumbers3Result);
             $list[] = $DrawingNumbers3;
         }
-        return new Entities\DrawingNumbers3List($list);
+        return new Common\DrawingNumbers3List($list);
     } 
 }

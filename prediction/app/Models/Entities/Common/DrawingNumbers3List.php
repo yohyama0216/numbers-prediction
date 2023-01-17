@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Entities;
+namespace App\Models\Entities\Common;
 
 use ArrayObject;
 

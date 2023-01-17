@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Entities;
+namespace App\Models\Entities\Statistics;
 
 class Counter {
 
@@ -23,20 +23,12 @@ class Counter {
 
     public function countBoxNumbers3()
     {        
-        $result = [];
+        $CountResultList = new CountResultList();
         foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers()->toString();
-            $stringParts = str_split($numbers);
-            sort($stringParts);
-            $numbers = implode($stringParts);
-            if (array_key_exists($numbers,$result)) {
-                $result[$numbers] += 1;
-            } else {
-                $result[$numbers] = 1;
-            }
+            $Numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
+            $CountResultList->addCountResult($Numbers,'box');
         }
-        arsort($result);
-        return $result;
+        return $CountResultList->sortByCount();
     }
 
     // 重くて無理
