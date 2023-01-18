@@ -2,6 +2,8 @@
 
 namespace App\Models\Entities\Statistics;
 
+use App\Models\Entities\Common;
+
 class Counter {
 
     private $DrawingNumbers3list = '';
@@ -32,22 +34,19 @@ class Counter {
     }
 
     // 重くて無理
-    // public function countDoubleSerialNumbers3()
-    // {        
-    //     $result = [];
-    //     foreach($this->DrawingNumbers3list as $DrawingNumbers3First) {
-    //         $numbersFirst = $DrawingNumbers3First->getDrawingNumbers3Result()->getNumbers()->toString();
-    //         foreach ($this->DrawingNumbers3list as $DrawingNumbers3Second) {
-    //             $numbersSecond = $DrawingNumbers3Second->getDrawingNumbers3Result()->getNumbers()->toString();
-    //             $string = implode("→",[$numbersFirst,$numbersSecond]);
-    //             if (array_key_exists($string, $result)) {
-    //                 $result[$string] += 1;
-    //             } else {
-    //                 $result[$string] = 1;
-    //             }
-    //         }
-    //     }
-    //     arsort($result);
-    //     return $result;
-    // }
+    // 2重ループやめて前の数字は $prevに保存して取得する
+    public function countSerialNumbers3()
+    {        
+        $CountResultList = new CountResultList();
+        foreach($this->DrawingNumbers3list as $key => $DrawingNumbers3) {
+            if (count($this->DrawingNumbers3list) == $key+1){
+                continue;
+            }
+            $NumbersNext = $this->DrawingNumbers3list[$key+1]->getDrawingNumbers3Result()->getNumbers();
+            $Numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
+            $Numbers3Serial = new Common\Numbers3Serial([$Numbers,$NumbersNext]);
+            $CountResultList->addCountResult($Numbers3Serial);
+        }
+        return $CountResultList->sortByCount();
+    }
 }
