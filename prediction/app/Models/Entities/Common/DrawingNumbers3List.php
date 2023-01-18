@@ -48,4 +48,17 @@ class DrawingNumbers3List extends ArrayObject {
         $list = array_slice($this->getArrayCopy(),$start,$prev);
         return new self($list);
     }
+    
+    public function getResultNumbersAsArray($flag = false)
+    {
+        $array = [];
+        $prefix = "";
+        foreach($this as $item) {
+            if ($flag) {
+                $prefix = "Numbers3:";
+            }
+            $array[] = $prefix.$item->getDrawingNumbers3Result()->getNumbers()->toString();
+        }
+        return $array;
+    }
 }

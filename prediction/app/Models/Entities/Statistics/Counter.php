@@ -33,20 +33,24 @@ class Counter {
         return $CountResultList->sortByCount();
     }
 
-    // 重くて無理
-    // 2重ループやめて前の数字は $prevに保存して取得する
     public function countSerialNumbers3()
-    {        
-        $CountResultList = new CountResultList();
-        foreach($this->DrawingNumbers3list as $key => $DrawingNumbers3) {
-            if (count($this->DrawingNumbers3list) == $key+1){
-                continue;
+    {
+        $array = $this->DrawingNumbers3list->getResultNumbersAsArray();
+        $countResult = array_count_values($array);
+
+        $result = [];
+        foreach($array as $key => $item) {
+            if ($key + 1 >= count($array)) {
+                continue ;
             }
-            $NumbersNext = $this->DrawingNumbers3list[$key+1]->getDrawingNumbers3Result()->getNumbers();
-            $Numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
-            $Numbers3Serial = new Common\Numbers3Serial([$Numbers,$NumbersNext]);
-            $CountResultList->addCountResult($Numbers3Serial);
+            $numbers = $item;
+            $numbersNext = $array[$key+1];
+            $result[] = $numbers."->".$numbersNext;
+            
         }
-        return $CountResultList->sortByCount();
+        
+        $result = array_count_values($result);
+        arsort($result);
+        //var_dump($result); 
     }
 }
