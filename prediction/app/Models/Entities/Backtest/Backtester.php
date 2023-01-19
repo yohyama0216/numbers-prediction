@@ -18,10 +18,9 @@ class Backtester {
         $BuyNumbers3List = BuyNumbers3List::createSameDigitBuyNumbers3();
         $HitNumbers3ResultList = new HitNumbers3ResultList();
         foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $HitNumbers3Result = HitChecker::check($DrawingNumbers3,$BuyNumbers3List);
-            $HitNumbers3ResultList[] = $HitNumbers3Result;
+            $HitNumbers3ResultList[] = HitChecker::check($DrawingNumbers3,$BuyNumbers3List);
         }
-        return $HitNumbers3ResultList;
+        return $HitNumbers3ResultList->calcTotalResult();
     }
 
     // 駄目だったケース

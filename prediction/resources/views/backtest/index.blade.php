@@ -19,11 +19,39 @@
         </div>
     </div>
 
-    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-    <h2>統計</h2>
+    <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
     <h3>数字と出現回数</h3>
-    {{$data->displayTotalResult()}}
+    @if($data)
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <!-- todo ちょっと見出し変えたい -->
+                    <th>合計回数</th>
+                    <th>勝ち</th>
+                    <th>負け</th>
+                    <th>収益</th>
+                    <th>費用</th>
+                    <th>純利益</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>
+                    <tr>
+                        <td>{{$data->getTotalCount()}}回</td>
+                        <td>{{$data->getHitCount()}}回</td>
+                        <td>{{$data->getLoseCount()}}回</td>
+                        <td>{{$data->getReturn()}}</td>
+                        <td>{{$data->getCost()}}</td>
+                        <td>{{$data->getProfit()}}</td>
+                    </tr>
+                </td>
+            </tbody>
+        </table>
+    </div>
+    @else
+    <div>見つかりませんでした。</div>
+    @endif
 </main>
 @endsection
 

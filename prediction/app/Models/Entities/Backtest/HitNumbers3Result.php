@@ -27,6 +27,16 @@ class HitNumbers3Result {
         $this->hitBoxCount++;
     }
 
+    public function getHitStraightCount()
+    {
+        return $this->hitStraightCount;
+    }
+
+    public function getHitBoxCount()
+    {
+        return $this->hitBoxCount;
+    }
+
     public function addReturn($return)
     {
         $this->return += $return;

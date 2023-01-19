@@ -12,11 +12,11 @@ class HitChecker {
         foreach($BuyNumbers3List as $BuyNumbers3) {
             $Numbers = $BuyNumbers3->getNumbers();
             $NumbersHit = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
-            if ($Numbers->isSameStraight($NumbersHit)) {
+            if ($NumbersHit->isSameStraight($Numbers)) {
                 $straightReturn = 90000;
                 $HitNumbers3Result->addHitStraightCount();
                 $HitNumbers3Result->addReturn($straightReturn);
-            } else if ($Numbers->isSameBox($NumbersHit)) {
+            } else if ($NumbersHit->isSameBox($Numbers)) {
                 $boxReturn = 10000;
                 $HitNumbers3Result->addHitBoxCount();
                 $HitNumbers3Result->addReturn($boxReturn);

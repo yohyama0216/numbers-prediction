@@ -6,45 +6,19 @@ use ArrayObject;
 use App\Models\Entities\Common;
 
 class BuyNumbers3List extends ArrayObject{
-    private $Numbers = '';
-    private $size = 1;
-    private CONST YEN_PER_SIZE = 200;
 
-    public function __construct($Numbers)
+    public function addBuyNumbers3($BuyNumbers3)
     {
-        $this->Numbers = $Numbers;
-    }
-
-    public function fromArray($array)
-    {
-
-    }
-
-    public function getNumbers()
-    {
-        return $this->Numbers;
-    }
-
-    public function toString()
-    {
-        return $this->Numbers->toString();
-    }
-
-    public function getSize()
-    {
-        return $this->size;
-    }
-
-    public function calcCost()
-    {
-        return $this->size * self::YEN_PER_SIZE;
+        $this[] = $BuyNumbers3;
+        return $this;
     }
 
     public static function createSameDigitBuyNumbers3()
     {
-        $numbers = range(111,999);
+        $numbers = ["000","111","222","333","444","555","666","777","888","999"];
+        $BuyNumbers3List = new BuyNumbers3List();
         foreach($numbers as $number) {
-            $BuyNumbers3List[] = new BuyNumbers3(new Common\Numbers3($number),1);
+            $BuyNumbers3List->addBuyNumbers3(new BuyNumbers3(new Common\Numbers3($number),1));
         }
         return $BuyNumbers3List;
     }
