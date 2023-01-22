@@ -2,6 +2,10 @@ import pandas as pd
 
 def createColumns(prefix, start, end):
     result = []
+    if end == None:
+        result.append(prefix + str(start))
+        return result
+
     for n in range(start,end):
         name = prefix + str(n)
         result.append(name)

@@ -9,12 +9,15 @@ numbersData = []
 
 numbersData = lD.loadNumbers3Data()
 # print(numbersData)
+start = 1
+end = 800
 
-df = bD.build(numbersData,range(1,800),1,2401) # endで一ずれる？
+df = bD.build(numbersData,range(start,end),1,(end * 3) + 1) # endで一ずれる？
 df.dropna(inplace=True)
 # print(df)
-X_columns = bD.createColumns('col',4,2400)
-y_columns = bD.createColumns('col',1,3)
+X_columns = bD.createColumns('col',4,end)
+y_columns = bD.createColumns('col',1,None)
+print(y_columns)
 X = df[X_columns].values  # 説明変数
 y = df[y_columns].values     # 目的変数
 
