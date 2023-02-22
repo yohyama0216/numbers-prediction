@@ -19,6 +19,7 @@ return new class extends Migration
         Schema::dropIfExists('drawings');
         Schema::create('drawings', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
             $table->date('date');
             $table->string('round');
             $table->timestamp('created_at');
@@ -33,10 +34,21 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('drawing_id');
             $table->string('numbers');
-            $table->integer('straight_prize')->nullable();
-            $table->integer('box_prize')->nullable();
-            $table->integer('set_prize')->nullable();
-            $table->integer('mini_prize')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+        });
+
+        /**
+         * 当選金
+         */
+        Schema::dropIfExists('prizes');
+        Schema::create('prizes', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('result_id');
+            $table->integer('straight')->nullable();
+            $table->integer('box')->nullable();
+            $table->integer('set')->nullable();
+            $table->integer('mini')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });

@@ -20,7 +20,7 @@
     </div>
 
     <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
+    // ページング　https://codelikes.com/laravel-pagination-custom/
     <h2>検索結果</h2>
     @if($data)
     <div class="table-responsive">
@@ -48,14 +48,8 @@
                         <td>{{$item->round}}</td>
                         <td>{{$item->date}}</td>
                         <td>{{$item->result->numbers}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$item->result->prize->straight}}</td>
+                        <td>{{$item->result->prize->box}}</td>
                     </tr>
                 @endforeach
                 </td>
