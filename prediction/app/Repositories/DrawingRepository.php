@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Drawing;
+use App\Models\Eloquent\Drawing;
 
 class DrawingRepository
 {

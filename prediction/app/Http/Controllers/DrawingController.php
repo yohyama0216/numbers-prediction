@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services;
-use App\Models\Algorhythm;
-use App\Models\Entities\Common\SearchCondition;
 use App\Repositories\DrawingRepository;
 
 class DrawingController extends Controller

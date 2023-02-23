@@ -3,7 +3,19 @@
 
 numbers3から数字の規則は独立させる
 
+Eloquentでやるように方針を変更。
+EntitiesはDrawingResultかな。あまり細かすぎても意味ない気がする
 
+// todo valueオブジェクト続き。
+// DrawingResultとDrawingResultのオブジェクト作る。
+// RepositoryはDrawingRepositoryのみ
+// 
+
+設計方針
+Repositoryはモデル名、テーブル名で分けない（分けすぎるのはアンチパターン）
+値オブジェクトを導入。
+値をオブジェクトを組み合わせてドメインオブジェクトを表現。
+ドメインオブジェクトと画面は基本的に連動する。
 
 
 #予想システム

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Entities;
 use App\Repositories\DrawingRepository;
 
 class DrawingService

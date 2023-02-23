@@ -15,28 +15,26 @@ class Counter {
 
     public function countStraightNumbers3()
     {        
-        $CountResultList = new CountResultList();
-        foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $Numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
-            $CountResultList->addCountResult($Numbers);
-        }
-        return $CountResultList->sortByCount();
+        $array = $this->DrawingNumbers3list->getResultNumbersAsArray();
+        $result = array_count_values($array);
+        arsort($result);
+        return $result;
     }
 
     public function countBoxNumbers3()
     {        
-        $CountResultList = new CountResultList();
-        foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $Numbers = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
-            $CountResultList->addCountResult($Numbers,'box');
-        }
-        return $CountResultList->sortByCount();
+        $array = $this->DrawingNumbers3list->getResultNumbersAsArray();
+        array_walk($array,
+        $result = array_count_values($array);
+        arsort($result);
+        return $result;
     }
 
+    // 不要（有用なデータがなかったため）
     public function countSerialNumbers3()
     {
         $array = $this->DrawingNumbers3list->getResultNumbersAsArray();
-        $countResult = array_count_values($array);
+
 
         $result = [];
         foreach($array as $key => $item) {
@@ -51,6 +49,11 @@ class Counter {
         
         $result = array_count_values($result);
         arsort($result);
+        return $result;
         //var_dump($result); 
     }
+
+    // 桁ごとのカウント
+
+    // 
 }
