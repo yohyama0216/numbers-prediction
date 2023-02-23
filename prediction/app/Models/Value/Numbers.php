@@ -4,13 +4,13 @@ namespace App\Models\Value;
 
 class Numbers
 {
-    private $numbersType = '';
-    private $numbers = '';
+    private int $numbersType;
+    private int $numbers;
 
     public function __construct($numbers)
     {
         $this->numbers = $this->validate($numbers);
-        $this->numbersType = strlen($numbers);
+        $this->numbersType = (int)strlen($numbers);
     }
 
     private function validate($numbers)
@@ -18,7 +18,7 @@ class Numbers
         if (strlen($numbers) !== 4 && strlen($numbers) !== 3) {
             // invalidException
         }
-        return $numbers;
+        return (int)$numbers;
     }
 
     public function getNumbersType()
@@ -64,9 +64,11 @@ class Numbers
     {
         return $this->toString() == $Numbers->toString();
     }
+
     public function isSameDigit()
     {
-        return count(array_unique($this->numbers)) == 1;
+        $arr = str_split($this->numbers);
+        return count(array_unique($arr)) == 1;
     }
 
     public function isStepUp()

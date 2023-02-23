@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 
 class Date
 {
-    private $DateTime = '';
+    private Carbon $DateTime;
 
     public function __construct($datetimeString)
     {
@@ -23,6 +23,7 @@ class Date
             return $datetime;
         }
         // inValideDatetimeException ?
+        return null;
     }
 
     public function toString()

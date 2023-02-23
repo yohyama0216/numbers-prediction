@@ -4,7 +4,7 @@ namespace App\Models\Value;
 
 class Round
 {
-    private $round = '';
+    private int $round;
 
     public function __construct($round)
     {
@@ -13,10 +13,11 @@ class Round
 
     private function validate($round)
     {
-        if (!is_string($round) && !ctype_digit($round)) {
+        if (!ctype_digit($round)) {
             // invalidException
+            return null;
         }
-        return $round;
+        return (int)$round;
     }
 
     public function toString()
