@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\DrawingResultRepository;
+use App\Services\DrawingResultService;
 
 class DrawingResultController extends Controller
 {
-    private $DrawingResultRepository = null;
+    private $DrawingResultService = null;
 
     public function __construct(
-        DrawingResultRepository $DrawingResultRepository
+        DrawingResultService $DrawingResultService
     )
     {
-        $this->DrawingResultRepository = $DrawingResultRepository; 
+        $this->DrawingResultService = $DrawingResultService; 
     }
     
     public function index(Request $request)
     {
-        $data = $this->DrawingResultRepository->findAll();
+        $data = $this->DrawingResultService->findAll();
         return view('drawing_result.list', compact('data'));
     }
 }
