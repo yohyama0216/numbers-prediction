@@ -46,7 +46,7 @@
                 <td>
                 @foreach($data as $key => $item)
                     <tr>
-                        <td>{{$item->getTarget()->toString()}}</td>
+                        <td>{{$item->getTarget()}}</td>
                         <td>{{$item->getCount()}}</td>
                         <td></td>
                         <td></td>

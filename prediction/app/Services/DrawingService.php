@@ -20,6 +20,11 @@ class DrawingService
         return $this->DrawingRepository->findAll();
     }
 
+    public function count()
+    {
+        return $this->DrawingRepository->findAll();
+    }
+
     public function findByNumbers($numbers)
     {
         return $this->DrawingRepository->find($numbers);
