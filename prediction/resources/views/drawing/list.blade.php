@@ -45,11 +45,17 @@
                 <td>
                 @foreach($data as $key => $item)
                     <tr>
-                        <td>{{$item->round}}</td>
-                        <td>{{$item->date}}</td>
-                        <td>{{$item->result->numbers}}</td>
-                        <td>{{$item->result->prize->straight}}</td>
-                        <td>{{$item->result->prize->box}}</td>
+                        <td>{{$item->getRound()}}</td>
+                        <td>{{$item->getDate()}}</td>
+                        <td>{{$item->getResultNumbers()}}</td>
+                        <td>{{$item->getPrize('straight')}}</td>
+                        <td></td>
+                        <td>{{$item->getPrize('box')}}</td>
+                        <td></td>
+                        <td>{{$item->getPrize('set')}}</td>
+                        <td></td>
+                        <td>{{$item->getPrize('mini')}}</td>
+                        <td></td>
                     </tr>
                 @endforeach
                 </td>

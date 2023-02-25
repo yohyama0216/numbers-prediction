@@ -1,15 +1,45 @@
 <?php
 
-use App\Models\Value;
+namespace App\Models\Entities;
+
+use App\Models\Value\Round;
+use App\Models\Value\Date;
+use App\Models\Value\Numbers;
+use App\Models\Value\Prize;
 
 class DrawingResult
 {
-    private Value\Round $Round;
-    private Value\Numbers $Numbers;
-    private Value\Prize $Prize;
+    private Round $Round;
+    private Date $Date;
+    private Numbers $Numbers;
+    private Prize $Prize;
 
-    private function __construct()
+    public function __construct(Round $Round, Date $Date,Numbers $Numbers, Prize $Prize)
     {
-        // todo
+        $this->Round = $Round;
+        $this->Date = $Date;
+        $this->Numbers = $Numbers;
+        $this->Prize = $Prize;
+    }
+
+    public function getRound()
+    {
+        return $this->Round->toString();
+    }
+
+    public function getDate()
+    {
+        return $this->Date->toString();
+    }
+
+    public function getResultNumbers()
+    {
+        return $this->Numbers->toString();
+    }
+
+    public function getPrize($type)
+    {
+        $method = 'get'.ucfirst($type);
+        return $this->Prize->$method()->toString();
     }
 }

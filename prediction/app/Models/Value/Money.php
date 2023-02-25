@@ -5,6 +5,7 @@ namespace App\Models\Value;
 class Money
 {
     private int $money;
+    private string $suffix = '円';
 
     public function __construct($money)
     {
@@ -23,8 +24,8 @@ class Money
     public function toString($format=false)
     {
         if ($format) {
-            return number_format($this->money);
+            return number_format($this->money).$this->suffix;
         }
-        return $this->money;
+        return (string)$this->money;
     }
 }

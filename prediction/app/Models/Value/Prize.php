@@ -16,4 +16,27 @@ class Prize
         $this->set = $set;
         $this->mini = $mini;
     }
+
+    public function getStraight()
+    {
+        return $this->straight;
+    }
+
+    public function getBox()
+    {
+        return $this->box;
+    }
+
+    public function getSet()
+    {
+        return $this->set;
+    }
+
+    public function getMini()
+    {
+        // ロトタイプ必要では？
+        return $this->mini;
+    }
 }
+
+
