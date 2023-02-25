@@ -14,7 +14,7 @@ use App\Models\Value\Numbers;
 use App\Models\Value\Prize;
 use App\Models\Value\Money;
 
-class DrawingRepository
+class DrawingResultRepository
 {
     public function findAll()
     {

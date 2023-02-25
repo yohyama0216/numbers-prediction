@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\TopController@index');
-Route::get('/drawing', 'App\Http\Controllers\DrawingController@index');
+Route::get('/drawing_result', 'App\Http\Controllers\DrawingResultController@index');
 Route::get('/count', 'App\Http\Controllers\CountController@index');
 
 Route::get('/backtest', 'App\Http\Controllers\BacktestController@index');
