@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Repositories\DrawingResultRepository;
 
-class DrawingResultService
+class CountService
 {
     private $DrawingResultRepository = null;
 
@@ -15,13 +15,8 @@ class DrawingResultService
         $this->DrawingResultRepository = $DrawingResultRepository;
     }
 
-    public function findAll()
+    public function count($numbers)
     {
-        return $this->DrawingResultRepository->findAll();
-    }
-
-    public function findByNumbers($numbers)
-    {
-        return $this->DrawingResultRepository->find($numbers);
+        return $this->DrawingResultRepository->countNumbers($numbers);
     }
 }

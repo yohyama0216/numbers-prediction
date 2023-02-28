@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\DrawingResultService;
+use App\Services\CountService;
 
 class CountController extends Controller
 {
-    private $DrawingResultService = null;
+    private $CountService = null;
 
     public function __construct(
-        DrawingResultService $DrawingResultService
+        CountService $CountService
     )
     {
-        $this->DrawingResultService = $DrawingResultService; 
+        $this->CountService = $CountService; 
     }
     
     public function index(Request $request)
     {
-        $data = $this->DrawingResultService->count([111,222,333]);
+        $data = $this->CountService->count([111,222,333]);
         return view('count.list', compact('data'));
     }
 }
