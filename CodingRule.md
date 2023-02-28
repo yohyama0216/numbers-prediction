@@ -12,7 +12,7 @@
     1. Controller
         1. ログイン判定はMiddleware(?)
     1. Service
-        1. （若干、曖昧）
+        1. Service間でのやり取りはしない。共通化する場合はSharedServiceを使う
     1. Repository
         1. Repositoryはモデル名、テーブル名で分けない。
         1. Repositoryとdomain objectは対になっている。ドメインオブジェクトと画面は基本的に連動する。
