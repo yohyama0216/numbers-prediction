@@ -19,5 +19,10 @@ class PredictionService
         $this->GenerateService = $GenerateService;
     }
 
+    public function predictFromRecentFiveNumbers()
+    {
+        return null;
+    }
+
 
 }

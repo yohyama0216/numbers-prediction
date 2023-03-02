@@ -18,7 +18,7 @@ class PredictionController extends Controller
     
     public function index(Request $request)
     {
-        $data = $this->PredictionService->fromRecentFiveNumbers(999);
+        $data = $this->PredictionService->predictFromRecentFiveNumbers();
         return view('Prediction.list', compact('data'));
     }
 }
