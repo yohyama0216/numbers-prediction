@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Repositories\DrawingResultRepository;
 
-class DrawingResultService
+class SearchService
 {
     private $DrawingResultRepository = null;
 
