@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\DrawingResultService;
+use App\Services\SearchService;
 use App\Services\BacktestService;
 
 class CountController extends Controller
 {
-    private $DrawingResultService = null;
+    private $SearchService = null;
     private $BacktestService = null;
 
     public function __construct(

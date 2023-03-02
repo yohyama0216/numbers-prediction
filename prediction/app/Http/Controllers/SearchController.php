@@ -18,8 +18,7 @@ class SearchController extends Controller
     
     public function index(Request $request)
     {
-        $searchCondition = 
-        $data = $this->SearchService->findAll();
+        $data = $this->SearchService->find($request);
         return view('drawing_result.list', compact('data'));
     }
 }

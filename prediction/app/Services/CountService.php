@@ -2,21 +2,30 @@
 
 namespace App\Services;
 
-use App\Repositories\DrawingResultRepository;
+use App\Models\Eloquent\Result;
+use App\Models\Entities\CountResult;
+use App\Models\Entities\CountResultList;
 
 class CountService
 {
-    private $DrawingResultRepository = null;
-
-    public function __construct(
-        DrawingResultRepository $DrawingResultRepository
-    )
+    public function count($numbersList)
     {
-        $this->DrawingResultRepository = $DrawingResultRepository;
+        $countList = [];
+        foreach($numbersList as $numbers) {
+            $countList[] = [
+                'numbers' => $numbers,
+                'count' => Result::where('numbers','=',$numbers)->count(),
+            ];
+        }
+        return $this->toCountResultList($countList);
     }
 
-    public function count($numbers)
+    private function toCountResultList($array)
     {
-        return $this->DrawingResultRepository->countNumbers($numbers);
+        $list = [];
+        foreach($array as $item) {
+            $list[] = new CountResult($item['numbers'],$item['count']);
+        }
+        return new CountResultList($list);
     }
 }
