@@ -13,13 +13,16 @@ use App\Models\Value\Money;
 
 class SearchService
 {
-    public function find($request)
+    public function find($SearchCondition)
     {
-        $collection = Drawing::where('id','>',0)->limit(20)->get();
-        return $this->toDrawingResultList($collection);
+        $collection = Drawing::all();
+        $filtered = $collection->filter(function($item) use ($SearchCondition){
+            return $SearchCondition->match($item);
+        });
+        return $this->toDrawingResultList($SearchCondition,$filtered->slice(0,20));
     }
 
-    private function toDrawingResultList($collection)
+    private function toDrawingResultList($SearchCondition,$collection)
     {
         $list = [];
         foreach($collection as $item) {

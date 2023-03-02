@@ -33,7 +33,7 @@ class Numbers
 
     public function toString()
     {
-        return $this->numbers;
+        return str_pad($this->numbers,$this->numbersType,'0',STR_PAD_LEFT);
     }
 
     public function getDigit100()
