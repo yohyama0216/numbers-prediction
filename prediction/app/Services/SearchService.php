@@ -17,9 +17,10 @@ class SearchService
     public function find($SearchCondition)
     {
         $collection = Result::with(['drawing','prize'])->get();
-        $filtered = $collection->filter(function($item) use ($SearchCondition){
-            return $SearchCondition->match($item);
+        $filtered = $collection->filter(function($result) use ($SearchCondition){
+            return $SearchCondition->match($result);
         });
+
         return $this->toDrawingResultList($SearchCondition,$filtered->slice(0,20));
     }
 

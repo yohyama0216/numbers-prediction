@@ -19,14 +19,14 @@ class SearchCondition {
         return $this->numbers || $this->dateFrom || $this->dateTo;
     }
 
-    public function match($Drawing)
+    public function match($Result)
     {
         if (empty($this->numbers)){
             return true;
         }
         
         // boxとかは？
-        if ($this->numbers && $this->numbers != $Drawing->result['numbers']) {
+        if ($this->numbers && $this->numbers != $Result['numbers']) {
             return false;
         }
         return true;
