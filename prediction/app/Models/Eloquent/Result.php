@@ -11,7 +11,7 @@ class Result extends Model
 {
     use HasFactory;
 
-    public function drawings(): BelongsTo
+    public function drawing(): BelongsTo
     {
         return $this->belongsTo(Drawing::class);
     }
