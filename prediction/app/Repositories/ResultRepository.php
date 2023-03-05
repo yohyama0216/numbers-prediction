@@ -49,4 +49,33 @@ class ResultRepository
         }
         return new CountResultList($list);
     }
+
+    public function find($SearchCondition)
+    {
+        $collection = Result::with(['drawing','prize'])->get();
+        $filtered = $collection->filter(function($result) use ($SearchCondition){
+            return $SearchCondition->match($result);
+        });
+
+        return $this->toDrawingResultList($SearchCondition,$filtered->slice(0,20));
+    }
+
+    private function toDrawingResultList($SearchCondition,$collection)
+    {
+        $list = [];
+        foreach($collection as $item) {
+            $list[] = new DrawingResult(
+                new Round($item['drawing']['round']),
+                new Date($item['drawing']['date']),
+                new Numbers($item['numbers']),
+                new Prize(
+                    new Money($item['prize']['straight']),
+                    new Money($item['prize']['box']),
+                    new Money($item['prize']['set']),
+                    new Money($item['prize']['mini'])                  
+                )
+            );
+        }
+        return new DrawingResultList($list);
+    }
 }

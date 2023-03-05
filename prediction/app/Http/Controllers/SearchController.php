@@ -21,7 +21,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $SearchCondition = new SearchCondition($request);
-        $data = $this->SearchService->find($SearchCondition);
+        $data = $this->SearchService->findByCondition($SearchCondition);
         return view('drawing_result.list', compact('data'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Repositories\ResultRepository;
 use App\Models\Entities\DrawingResult;
 use App\Models\Entities\DrawingResultList;
 use App\Models\Eloquent\Drawing;
@@ -14,32 +15,18 @@ use App\Models\Value\Money;
 
 class SearchService
 {
-    public function find($SearchCondition)
-    {
-        $collection = Result::with(['drawing','prize'])->get();
-        $filtered = $collection->filter(function($result) use ($SearchCondition){
-            return $SearchCondition->match($result);
-        });
+    private $ResultRepository;
 
-        return $this->toDrawingResultList($SearchCondition,$filtered->slice(0,20));
+    public function __construct(
+        ResultRepository $ResultRepository
+    )
+    {
+        $this->ResultRepository = $ResultRepository;
+    }
+    
+    public function findByCondition($SearchCondition)
+    {
+        return $this->ResultRepository->find($SearchCondition);
     }
 
-    private function toDrawingResultList($SearchCondition,$collection)
-    {
-        $list = [];
-        foreach($collection as $item) {
-            $list[] = new DrawingResult(
-                new Round($item['drawing']['round']),
-                new Date($item['drawing']['date']),
-                new Numbers($item['numbers']),
-                new Prize(
-                    new Money($item['prize']['straight']),
-                    new Money($item['prize']['box']),
-                    new Money($item['prize']['set']),
-                    new Money($item['prize']['mini'])                  
-                )
-            );
-        }
-        return new DrawingResultList($list);
-    }
 }
