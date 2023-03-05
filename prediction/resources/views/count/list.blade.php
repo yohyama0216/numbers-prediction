@@ -44,7 +44,7 @@
             </thead>
             <tbody>
                 <td>
-                @foreach($data->getCountTopList(5) as $key => $item)
+                @foreach($data as $key => $item)
                     <tr>
                         <td>{{$item->getTarget()}}</td>
                         <td>{{$item->getCount()}}</td>

@@ -18,7 +18,7 @@ class CountController extends Controller
     
     public function index(Request $request)
     {
-        $data = $this->CountService->count([]);
+        $data = $this->CountService->getCountTop5();
         return view('count.list', compact('data'));
     }
 }

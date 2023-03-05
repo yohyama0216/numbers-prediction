@@ -5,28 +5,32 @@ namespace App\Services;
 use App\Models\Eloquent\Result;
 use App\Models\Entities\CountResult;
 use App\Models\Entities\CountResultList;
+use App\Repositories\ResultRepository;
 use Illuminate\Support\Facades\DB;
 
 class CountService
 {
-    public function count($numbersList)
+    private $ResultRepository;
+
+    public function __construct(
+        ResultRepository $ResultRepository
+    )
     {
-        $countList = [];
-        $query = Result::groupBy('numbers')
-                    ->select('browser', DB::raw('numbers, count(*) as count'));
-        if ($numbersList) {
-            $query = $query->whereIn('numbers',$numbersList);
-        }
-        $countList = $query->get();
-        return $this->toCountResultList($countList);
+        $this->ResultRepository = $ResultRepository;
+    }
+    
+    // public function countByNumbers($numbers)
+    // {
+    //     return $this->ResultRepository->getCountByNumbers($numbers);
+    // }
+
+    public function getCountTop5()
+    {
+        return $this->ResultRepository->getCountList(5,'desc');
     }
 
-    private function toCountResultList($array)
+    public function getCountWorst5()
     {
-        $list = [];
-        foreach($array as $item) {
-            $list[] = new CountResult($item['numbers'],$item['count']);
-        }
-        return new CountResultList($list);
+        return $this->ResultRepository->getCountList(5,'desc');
     }
 }
