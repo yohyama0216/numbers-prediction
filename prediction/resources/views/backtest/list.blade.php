@@ -21,6 +21,9 @@
 
     <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
     <h3>数字と出現回数</h3>
+    <p>トータルリターン{{$data->calcTotalReturn()}}</p>
+    <p>トータルコスト{{$data->calcTotalCost()}}</p>
+    <p>損益 {{$data->calcTotalReturn() - $data->calcTotalCost()}}
     @if($data)
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -36,12 +39,13 @@
                 </tr>
             </thead>
             <tbody>
+
             @foreach($data as $key => $item)
                     @if($item->getHit())
                     <tr>
                         <td>{{$item->getHit()}}</td>
                         <td>{{$item->getReturn()}}</td>
-                        <td></td>
+                        <td>{{$item->getBuyNumbers()->calcCost()}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
