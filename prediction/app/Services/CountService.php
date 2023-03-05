@@ -2,11 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Eloquent\Result;
-use App\Models\Entities\CountResult;
-use App\Models\Entities\CountResultList;
 use App\Repositories\ResultRepository;
-use Illuminate\Support\Facades\DB;
 
 class CountService
 {
@@ -18,11 +14,6 @@ class CountService
     {
         $this->ResultRepository = $ResultRepository;
     }
-    
-    // public function countByNumbers($numbers)
-    // {
-    //     return $this->ResultRepository->getCountByNumbers($numbers);
-    // }
 
     public function getCountTop5()
     {

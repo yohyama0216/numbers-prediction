@@ -3,15 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\ResultRepository;
-use App\Models\Entities\DrawingResult;
-use App\Models\Entities\DrawingResultList;
-use App\Models\Eloquent\Drawing;
-use App\Models\Eloquent\Result;
-use App\Models\Value\Round;
-use App\Models\Value\Date;
-use App\Models\Value\Numbers;
-use App\Models\Value\Prize;
-use App\Models\Value\Money;
 
 class SearchService
 {

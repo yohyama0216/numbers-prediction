@@ -10,7 +10,6 @@ class BuyNumbers {
     private $Numbers = '';
     private $size;
     private CONST YEN_PER_SIZE = 200;
-    private $return ;
 
     public function __construct($Round, $type, $Numbers,$size=1)
     {
@@ -48,16 +47,5 @@ class BuyNumbers {
     public function calcCost()
     {
         return $this->size * self::YEN_PER_SIZE;
-    }
-
-    public function checkResult($DrawingResult)
-    {
-        // boxの場合は？
-        if ($DrawingResult->getNumbers == $this->Numbers->toString()) {
-            $this->return = $this->size * $DrawingResult->getPrize('straight');
-        }
-        
-        // コスト分
-        $this->return -= $this->calcCost();
     }
 }
