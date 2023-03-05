@@ -5,18 +5,19 @@ namespace App\Services;
 use App\Models\Eloquent\Result;
 use App\Models\Entities\CountResult;
 use App\Models\Entities\CountResultList;
+use Illuminate\Support\Facades\DB;
 
 class CountService
 {
     public function count($numbersList)
     {
         $countList = [];
-        foreach($numbersList as $numbers) {
-            $countList[] = [
-                'numbers' => $numbers,
-                'count' => Result::where('numbers','=',$numbers)->count(),
-            ];
+        $query = Result::groupBy('numbers')
+                    ->select('browser', DB::raw('numbers, count(*) as count'));
+        if ($numbersList) {
+            $query = $query->whereIn('numbers',$numbersList);
         }
+        $countList = $query->get();
         return $this->toCountResultList($countList);
     }
 
