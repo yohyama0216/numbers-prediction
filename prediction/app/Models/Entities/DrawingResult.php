@@ -24,12 +24,17 @@ class DrawingResult
 
     public function getRound()
     {
-        return $this->Round->toString();
+        return $this->Round;
     }
 
     public function getDate()
     {
         return $this->Date->toString();
+    }
+
+    public function getNumbers()
+    {
+        return $this->Numbers;
     }
 
     public function getResultNumbers()

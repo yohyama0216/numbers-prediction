@@ -23,7 +23,13 @@ class SearchService
     {
         $this->ResultRepository = $ResultRepository;
     }
+
+    public function findAll()
+    {
+        return $this->ResultRepository->findAll();
+    }
     
+
     public function findByCondition($SearchCondition)
     {
         return $this->ResultRepository->find($SearchCondition);

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\SearchService;
 use App\Services\BacktestService;
 
-class CountController extends Controller
+class BacktestController extends Controller
 {
     private $SearchService = null;
     private $BacktestService = null;
@@ -21,6 +21,6 @@ class CountController extends Controller
     public function index(Request $request)
     {
         $data = $this->BacktestService->buySameDigitNumbers();
-        return view('count.list', compact('data'));
+        return view('backtest.list', compact('data'));
     }
 }

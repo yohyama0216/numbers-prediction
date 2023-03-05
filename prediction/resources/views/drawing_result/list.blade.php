@@ -45,7 +45,7 @@
                 <td>
                 @foreach($data as $key => $item)
                     <tr>
-                        <td>{{$item->getRound()}}</td>
+                        <td>{{$item->getRound()->toString()}}</td>
                         <td>{{$item->getDate()}}</td>
                         <td>{{$item->getResultNumbers()}}</td>
                         <td>{{$item->getPrize('straight')}}</td>

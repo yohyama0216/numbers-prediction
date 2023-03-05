@@ -36,16 +36,23 @@
                 </tr>
             </thead>
             <tbody>
-                <td>
+            @foreach($data as $key => $item)
+                    @if($item->getHit())
                     <tr>
-                        <td>{{$data->getTotalCount()}}回</td>
-                        <td>{{$data->getHitCount()}}回</td>
-                        <td>{{$data->getLoseCount()}}回</td>
-                        <td>{{$data->getReturn()}}</td>
-                        <td>{{$data->getCost()}}</td>
-                        <td>{{$data->getProfit()}}</td>
+                        <td>{{$item->getHit()}}</td>
+                        <td>{{$item->getReturn()}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
-                </td>
+                    @endif
+                @endforeach
             </tbody>
         </table>
     </div>

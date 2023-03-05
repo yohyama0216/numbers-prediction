@@ -60,6 +60,12 @@ class ResultRepository
         return $this->toDrawingResultList($SearchCondition,$filtered->slice(0,20));
     }
 
+    public function findAll()
+    {
+        $collection = Result::with(['drawing','prize'])->get();
+        return $this->toDrawingResultList(null,$collection);
+    }
+
     private function toDrawingResultList($SearchCondition,$collection)
     {
         $list = [];

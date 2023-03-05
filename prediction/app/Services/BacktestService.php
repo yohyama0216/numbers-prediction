@@ -2,18 +2,65 @@
 
 namespace App\Services;
 
-use App\Models\Entities;
+use App\Models\Entities\BuyNumbers;
+use App\Models\Entities\BuyResult;
+use App\Models\Entities\BuyResultList;
+use App\Models\Value\Numbers;
+use App\Models\Value\Round;
+use App\Repositories\ResultRepository;
+use App\Services\Shared\GenerateService;
 
 class BacktestService
 {
+    private $ResultRepository;
+    private $GenerateService;
+
+    public function __construct(
+        ResultRepository $ResultRepository,
+        GenerateService $GenerateService
+    )
+    {
+        $this->ResultRepository = $ResultRepository;
+        $this->GenerateService = $GenerateService;        
+    }
 
     public function buySameDigitNumbers()
     {        
-        // $numbersList = $this->GenerateService->getSameDigitNumbers(3);
-        // todo 買う処理？
-        // foreach($this->testDrawingResultData as $DrawingResult) {
-        //     $HitNumbers3ResultList[] = HitChecker::check($DrawingNumbers3,$BuyNumbers3List);
-        // }
-        // return $HitNumbers3ResultList->calcTotalResult();
+        $collection = $this->ResultRepository->findAll();
+        $BuyResultList = [];
+        foreach ($collection as $Result) {
+            $BuyNumbersList = [
+                    new BuyNumbers($Result->getRound(),'box',new Numbers(355))
+            ];
+            foreach($BuyNumbersList as $BuyNumbers) {
+                if ($BuyNumbers->getRound()->toString() != $Result->getRound()->toString()) {
+                    continue ;
+                }
+
+                $hit = '';
+                $return = 0;
+                if ($BuyNumbers->getType() == 'straight' && $Result->getNumbers()->isSameStraight($BuyNumbers->getNumbers())){
+                    $hit = 'straight';
+                    $return = $Result->getPrize('straight');
+                } else if ($BuyNumbers->getType() == 'box' && $Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())){
+                    $hit = 'box';
+                    $return = $Result->getPrize('box');
+                } else if ($BuyNumbers->getType() == 'set') {
+                    if ($Result->getNumbers()->isSameStraight($BuyNumbers->getNumbers())) {
+                        $hit = 'set';
+                        $return = $Result->getPrize('setStraight');
+                    } else if ($Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())) {
+                        $hit = 'set';
+                        $return = $Result->getPrize('setBox');
+                    }
+                }
+                $BuyResultList[] = new BuyResult(
+                    $BuyNumbers,
+                    $hit,
+                    $return
+                );
+            }
+        }
+        return new BuyResultList($BuyResultList);
     }
 }
