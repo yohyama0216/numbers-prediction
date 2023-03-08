@@ -51,7 +51,6 @@ with の引数に配列を使って、複数のリレーションデータをと
 
 $books = App\Book::with(['author', 'publisher'])->get();
 
-// データおかしい？　1998-11-30 strpadの問題？
 
 アプリの目的
 1. Laravelに慣れる
@@ -68,5 +67,14 @@ $books = App\Book::with(['author', 'publisher'])->get();
         1. テーブル設計
     1. クラス設計
         1. Service
+        1. Repository
         1. ドメインオブジェクト
 
+todo
+テーブルまとめる
+Lotoにも取り組む
+連続数時 123->124みたいなのも実装する　SQLなら楽勝？
+バッチはインポートで使う。
+
+フォーム、表などはコンポーネント化する
+bootstrapの標準でデザインをする　チーとシート使ってもいいかも？

@@ -22,6 +22,6 @@ class SearchController extends Controller
     {
         $SearchCondition = new SearchCondition($request);
         $data = $this->SearchService->findByCondition($SearchCondition);
-        return view('drawing_result.list', compact('data'));
+        return view('search.list', compact('data'));
     }
 }
