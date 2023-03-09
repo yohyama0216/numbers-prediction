@@ -5,70 +5,67 @@
 @section('content')
 <main class="col-md-8 offset-md-2 border border-dark">
 <section>
-<h2 id="accented-tables">過去の抽選検索<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#accented-tables" style="padding-left: 0.375em;"></a></h2>
-<h3 id="striped-rows">検索条件<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#striped-rows" style="padding-left: 0.375em;"></a></h3>
-<form class="row g-3 needs-validation" novalidate>
-  <div class="col-md-4">
-    <label for="validationCustom01" class="form-label">First name</label>
-    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-    <div class="valid-feedback">
-      Looks good!
+<h3 id="accented-tables">過去の抽選検索<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#accented-tables" style="padding-left: 0.375em;"></a></h2>
+<h4 id="striped-rows">簡易検索<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#striped-rows" style="padding-left: 0.375em;"></a></h3>
+<!-- navbar　ほしい--> 
+<form class="g-3 needs-validation" novalidate>
+  <div class="row">
+    <div class="col-md-3">
+      <!-- <label for="validationCustomUsername" class="form-label">Username</label> -->
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend">回号</span>
+        <input type="text" class="form-control" placeholder="1111" aria-describedby="inputGroupPrepend" required>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <label for="validationCustom02" class="form-label">Last name</label>
-    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-    <div class="valid-feedback">
-      Looks good!
+    <div class="col-md-3">
+      <!-- <label for="validationCustomUsername" class="form-label">Username</label> -->
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend">当せん数字</span>
+        <input type="text" class="form-control" placeholder="777" aria-describedby="inputGroupPrepend" required>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <label for="validationCustomUsername" class="form-label">Username</label>
-    <div class="input-group has-validation">
-      <span class="input-group-text" id="inputGroupPrepend">@</span>
-      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-      <div class="invalid-feedback">
-        Please choose a username.
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">日時</span>
+    <input type="text" class="form-control" name="" placeholder="2001-01-01" aria-label="dateFrom">
+    <span class="input-group-text">～</span>
+    <input type="text" class="form-control" name="" placeholder="2002-01-01" aria-label="dateTo">
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <label for="validationCustom03" class="form-label">City</label>
-    <input type="text" class="form-control" id="validationCustom03" required>
-    <div class="invalid-feedback">
-      Please provide a valid city.
+  <h4 id="striped-rows">詳細検索<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#striped-rows" style="padding-left: 0.375em;"></a></h3>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">特殊な数字</label>
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>選択</option>
+          <option value="1">全桁が同じ数字（例、111）</option>
+          <option value="2">階段数字（例、123）</option>
+          <option value="3">鏡数字（例、121）</option>
+        </select>
+      </div>
     </div>
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom04" class="form-label">State</label>
-    <select class="form-select" id="validationCustom04" required>
-      <option selected disabled value="">Choose...</option>
-      <option>...</option>
-    </select>
-    <div class="invalid-feedback">
-      Please select a valid state.
-    </div>
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom05" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="validationCustom05" required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
-    </div>
-  </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Agree to terms and conditions
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">連続出現</span>
+      <span class="input-group-text" id="basic-addon1">始め</span>
+    <input type="text" class="form-control" name="" placeholder="100" aria-label="dateFrom">
+    <span class="input-group-text">次</span>
+    <input type="text" class="form-control" name="" placeholder="101" aria-label="dateTo">
       </div>
     </div>
   </div>
-  <div class="mx-auto">
-    <button class="btn btn-primary" type="submit">Submit form</button>
+  <div class="col-md-12">
+    <div class="mx-auto">
+      <button class="btn btn-primary" type="submit">検索</button>
+    </div>
   </div>
 </form>
 </section>
