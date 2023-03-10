@@ -6,7 +6,6 @@ use App\Models\Entities\BuyNumbers;
 use App\Models\Entities\BuyResult;
 use App\Models\Entities\BuyResultList;
 use App\Models\Value\Numbers;
-use App\Models\Value\Round;
 use App\Repositories\ResultRepository;
 use App\Services\Shared\GenerateService;
 
@@ -18,38 +17,37 @@ class BacktestService
     public function __construct(
         ResultRepository $ResultRepository,
         GenerateService $GenerateService
-    )
-    {
+    ) {
         $this->ResultRepository = $ResultRepository;
-        $this->GenerateService = $GenerateService;        
+        $this->GenerateService = $GenerateService;
     }
 
     public function buySameDigitNumbers()
-    {        
+    {
         $collection = $this->ResultRepository->findAll();
         $BuyResultList = [];
         foreach ($collection as $Result) {
             $BuyNumbersList = [
-                    new BuyNumbers($Result->getRound(),'box',new Numbers(355))
+                    new BuyNumbers($Result->getRound(), 'straight', new Numbers(355))
             ];
-            foreach($BuyNumbersList as $BuyNumbers) {
+            foreach ($BuyNumbersList as $BuyNumbers) {
                 if ($BuyNumbers->getRound()->toString() != $Result->getRound()->toString()) {
                     continue ;
                 }
 
                 $hit = '';
                 $return = 0;
-                if ($BuyNumbers->getType() == 'straight' && $Result->getNumbers()->isSameStraight($BuyNumbers->getNumbers())){
+                if ($BuyNumbers->getType() == 'straight' && $Result->getNumbers()->isSameStraight($BuyNumbers->getNumbers())) {
                     $hit = 'straight';
                     $return = $Result->getPrize('straight');
-                } else if ($BuyNumbers->getType() == 'box' && $Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())){
+                } elseif ($BuyNumbers->getType() == 'box' && $Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())) {
                     $hit = 'box';
                     $return = $Result->getPrize('box');
-                } else if ($BuyNumbers->getType() == 'set') {
+                } elseif ($BuyNumbers->getType() == 'set') {
                     if ($Result->getNumbers()->isSameStraight($BuyNumbers->getNumbers())) {
                         $hit = 'set';
                         $return = $Result->getPrize('setStraight');
-                    } else if ($Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())) {
+                    } elseif ($Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())) {
                         $hit = 'set';
                         $return = $Result->getPrize('setBox');
                     }
@@ -57,7 +55,7 @@ class BacktestService
                 $BuyResultList[] = new BuyResult(
                     $BuyNumbers,
                     $hit,
-                    $return
+                    $return,
                 );
             }
         }

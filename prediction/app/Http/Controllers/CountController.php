@@ -11,11 +11,10 @@ class CountController extends Controller
 
     public function __construct(
         CountService $CountService
-    )
-    {
-        $this->CountService = $CountService; 
+    ) {
+        $this->CountService = $CountService;
     }
-    
+
     public function index(Request $request)
     {
         $data = $this->CountService->getCountTop5();

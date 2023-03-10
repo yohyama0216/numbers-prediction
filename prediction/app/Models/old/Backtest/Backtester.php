@@ -4,8 +4,8 @@ namespace App\Models\Entities\Backtest;
 
 use App\Models\Entities\Common;
 
-class Backtester {
-
+class Backtester
+{
     private $DrawingNumbers3list = '';
 
     public function __construct($DrawingNumbers3list)
@@ -14,11 +14,11 @@ class Backtester {
     }
 
     public function buySameDigitNumbers()
-    {        
+    {
         $BuyNumbers3List = BuyNumbers3List::createSameDigitBuyNumbers3();
         $HitNumbers3ResultList = new HitNumbers3ResultList();
-        foreach($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $HitNumbers3ResultList[] = HitChecker::check($DrawingNumbers3,$BuyNumbers3List);
+        foreach ($this->DrawingNumbers3list as $DrawingNumbers3) {
+            $HitNumbers3ResultList[] = HitChecker::check($DrawingNumbers3, $BuyNumbers3List);
         }
         return $HitNumbers3ResultList->calcTotalResult();
     }

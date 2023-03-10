@@ -21,10 +21,10 @@ class Money
         return (int)$money;
     }
 
-    public function toString($format=false)
+    public function toString($format = false)
     {
         if ($format) {
-            return number_format($this->money).$this->suffix;
+            return number_format($this->money) . $this->suffix;
         }
         return (string)$this->money;
     }

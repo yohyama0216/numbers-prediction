@@ -2,7 +2,8 @@
 
 namespace App\Models\Entities\Common;
 
-class Numbers3 {
+class Numbers3
+{
     private $numbersType = 3; //不要？
     private $numbers = '';
 
@@ -26,17 +27,17 @@ class Numbers3 {
 
     public function getDigit100()
     {
-        return substr($this->toString(),0,1);
+        return substr($this->toString(), 0, 1);
     }
 
     public function getDigit10()
     {
-        return substr($this->toString(),1,1);
+        return substr($this->toString(), 1, 1);
     }
 
     public function getDigit1()
     {
-        return substr($this->toString(),2,1);
+        return substr($this->toString(), 2, 1);
     }
 
     public function isSameBox($Numbers)
@@ -44,7 +45,7 @@ class Numbers3 {
         $arr1 = str_split($this->toString());
         sort($arr1);
         $arr2 = str_split($Numbers->toString());
-        sort($arr2);        
+        sort($arr2);
         return implode($arr1) == implode($arr2);
     }
 
@@ -70,7 +71,7 @@ class Numbers3 {
 
     public function getMini()
     {
-        return substr($this->numbers,2);
+        return substr($this->numbers, 2);
     }
 
     private function getUraNumbers()

@@ -11,7 +11,7 @@ class Count
         $this->count = 0;
     }
 
-    public function addCount($count=1)
+    public function addCount($count = 1)
     {
         $this->count = $this->count + $count;
     }

@@ -9,7 +9,7 @@ class BuyResultList extends Collection
     public function calcTotalCost()
     {
         $totalCost = 0;
-        foreach($this as $item) {
+        foreach ($this as $item) {
             $totalCost += $item->getBuyNumbers()->calcCost();
         }
         return $totalCost;
@@ -18,7 +18,7 @@ class BuyResultList extends Collection
     public function calcTotalReturn()
     {
         $totalReturn = 0;
-        foreach($this as $item) {
+        foreach ($this as $item) {
             $totalReturn += $item->getReturn();
         }
         return $totalReturn;

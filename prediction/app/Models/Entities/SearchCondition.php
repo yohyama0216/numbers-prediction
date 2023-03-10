@@ -2,7 +2,8 @@
 
 namespace App\Models\Entities;
 
-class SearchCondition {
+class SearchCondition
+{
     private $numbers;
     private $dateFrom;
     private $dateTo;
@@ -21,10 +22,10 @@ class SearchCondition {
 
     public function match($Result)
     {
-        if (empty($this->numbers)){
+        if (empty($this->numbers)) {
             return true;
         }
-        
+
         // boxとかは？
         if ($this->numbers && $this->numbers != $Result['numbers']) {
             return false;

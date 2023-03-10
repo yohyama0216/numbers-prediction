@@ -10,8 +10,8 @@ class GenerateService
     public function getSameDigitNumbers($numbersType)
     {
         $list = [];
-        foreach(range(0,9) as $number) {
-            $list[] = str_repeat($number,$numbersType);
+        foreach (range(0, 9) as $number) {
+            $list[] = str_repeat($number, $numbersType);
         }
         return $list;
     }

@@ -19,7 +19,7 @@ class Date
         $year = $datetime->format('Y');
         $month = $datetime->format('m');
         $day = $datetime->format('d');
-        if (checkdate($month,$day,$year)) {
+        if (checkdate($month, $day, $year)) {
             return $datetime;
         }
         // inValideDatetimeException ?

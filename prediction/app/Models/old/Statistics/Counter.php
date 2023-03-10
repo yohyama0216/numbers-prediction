@@ -4,8 +4,8 @@ namespace App\Models\Entities\Statistics;
 
 use App\Models\Entities\Common;
 
-class Counter {
-
+class Counter
+{
     private $DrawingNumbers3list = '';
 
     public function __construct($DrawingNumbers3list)
@@ -14,7 +14,7 @@ class Counter {
     }
 
     public function countStraightNumbers3()
-    {        
+    {
         $array = $this->DrawingNumbers3list->getResultNumbersAsArray();
         $result = array_count_values($array);
         arsort($result);
@@ -22,7 +22,7 @@ class Counter {
     }
 
     public function countBoxNumbers3()
-    {        
+    {
         $array = $this->DrawingNumbers3list->getResultNumbersAsArray();
         array_walk($array,
         $result = array_count_values($array);
@@ -37,23 +37,22 @@ class Counter {
 
 
         $result = [];
-        foreach($array as $key => $item) {
+        foreach ($array as $key => $item) {
             if ($key + 1 >= count($array)) {
                 continue ;
             }
             $numbers = $item;
-            $numbersNext = $array[$key+1];
-            $result[] = $numbers."->".$numbersNext;
-            
+            $numbersNext = $array[$key + 1];
+            $result[] = $numbers . "->" . $numbersNext;
         }
-        
+
         $result = array_count_values($result);
         arsort($result);
         return $result;
-        //var_dump($result); 
+        //var_dump($result);
     }
 
     // 桁ごとのカウント
 
-    // 
+    //
 }

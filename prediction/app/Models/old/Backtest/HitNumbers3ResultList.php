@@ -4,8 +4,8 @@ namespace App\Models\Entities\Backtest;
 
 use ArrayObject;
 
-class HitNumbers3ResultList extends ArrayObject {
-
+class HitNumbers3ResultList extends ArrayObject
+{
     private $totalCount = 0;
     private $hitCount = 0;
     private $loseCount = 0;
@@ -45,7 +45,7 @@ class HitNumbers3ResultList extends ArrayObject {
 
     public function calcTotalResult()
     {
-        foreach($this as $item) {
+        foreach ($this as $item) {
             $return = $item->getHitStraightCount();
             if ($return) {
                 $this->hitCount++;

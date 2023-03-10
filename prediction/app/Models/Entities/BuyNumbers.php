@@ -4,14 +4,15 @@ namespace App\Models\Entities;
 
 use App\Models\Value\Round;
 
-class BuyNumbers {
+class BuyNumbers
+{
     private Round $Round;
     private $type;
     private $Numbers = '';
     private $size;
-    private CONST YEN_PER_SIZE = 200;
+    private const YEN_PER_SIZE = 200;
 
-    public function __construct($Round, $type, $Numbers,$size=1)
+    public function __construct($Round, $type, $Numbers, $size = 1)
     {
         $this->Round = $Round;
         $this->type = $type;

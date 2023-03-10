@@ -2,11 +2,13 @@
 
 namespace Test\Search;
 
-class Search {
+class Search
+{
     private $NumbersPastData = [];
     private $searchResult = [];
 
-    public function __construct($data) {
+    public function __construct($data)
+    {
         $this->NumbersPastData = $data;
     }
 
@@ -25,9 +27,9 @@ class Search {
      */
     public function searchSameDigitNumbers()
     {
-        $result = array_filter($this->NumbersPastData->getData(),function($v) {
+        $result = array_filter($this->NumbersPastData->getData(), function ($v) {
             return $v->isSameDigit();
-        },ARRAY_FILTER_USE_BOTH);
+        }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
     }
 
@@ -41,9 +43,9 @@ class Search {
      */
     public function searchStepNumbers()
     {
-        $result = array_filter($this->NumbersPastData->getData(),function($v) {
+        $result = array_filter($this->NumbersPastData->getData(), function ($v) {
             return $v->isStep();
-        },ARRAY_FILTER_USE_BOTH);
+        }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
     }
 
@@ -52,35 +54,35 @@ class Search {
      */
     public function searchMirrorNumbers()
     {
-        $result = array_filter($this->NumbersPastData->getData(),function($v) {
+        $result = array_filter($this->NumbersPastData->getData(), function ($v) {
             return $v->isMirror();
-        },ARRAY_FILTER_USE_BOTH);
+        }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
     }
- 
+
     /**
      * 過去n回に同じ数字が出るケース
      */
     public function searchSameNumberWithin($prevs)
     {
-        $result = array_filter($this->NumbersPastData->getData(),function($v,$k) use ($prevs) {
+        $result = array_filter($this->NumbersPastData->getData(), function ($v, $k) use ($prevs) {
             return $this->NumbersPastData->inPrevNumbers($k, $prevs);
-        },ARRAY_FILTER_USE_BOTH);
+        }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
-    } 
+    }
 
     /**
      * 過去に出た数字をパターン化
      * $step=1 だと連続。 $step=2だと1個飛ばし
      */
-    public function searchNumbersDigitPattern($prevs,$step,$digit)
+    public function searchNumbersDigitPattern($prevs, $step, $digit)
     {
-        $result = array_filter($this->NumbersPastData->getData(),function($v,$k) use ($prevs,$step,$digit) {
-            echo $this->NumbersPastData->getPatternWithinPrevs($k,$prevs,$step,$digit);
+        $result = array_filter($this->NumbersPastData->getData(), function ($v, $k) use ($prevs, $step, $digit) {
+            echo $this->NumbersPastData->getPatternWithinPrevs($k, $prevs, $step, $digit);
             return ;
-        },ARRAY_FILTER_USE_BOTH);
+        }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
-    } 
+    }
 
 
     private function countNumbers($data)
@@ -101,7 +103,8 @@ class Search {
 
     //public function displayAllResultNumbersMiniCount($order = 'desc', $limit = null) {
 
-    public function getRoundListByNumbers($numbers) {
+    public function getRoundListByNumbers($numbers)
+    {
         $result = [];
         foreach ($this->NumbersPastData as $key => $item) {
             if ($item['numbers'] == $numbers) {
@@ -112,14 +115,15 @@ class Search {
     }
 
 
-    public function countNum10AndNum1Pair() {
+    public function countNum10AndNum1Pair()
+    {
         $result = [
             [],[],[],[],[],
             [],[],[],[],[]
         ];
-        foreach($this->hitRawNumbersList as $numbers) {
+        foreach ($this->hitRawNumbersList as $numbers) {
             $mainKey = $numbers['num10'];
-            $subKey = $numbers['num10']."-".$numbers['num1'];
+            $subKey = $numbers['num10'] . "-" . $numbers['num1'];
             if (array_key_exists($subKey, $result[$mainKey]) == false) {
                 $result[$mainKey][$subKey] = 1;
             } else {
@@ -127,7 +131,7 @@ class Search {
             }
         }
         ksort($result);
-        
+
         var_dump($result);
         return $result;
     }
@@ -135,7 +139,7 @@ class Search {
 
 
 
-    public function displayResult($order = 'desc', $limit=null)
+    public function displayResult($order = 'desc', $limit = null)
     {
         $result = $this->countNumbers($this->searchResult);
         if ($order == 'desc') {

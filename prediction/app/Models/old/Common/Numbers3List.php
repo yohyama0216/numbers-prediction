@@ -2,7 +2,8 @@
 
 namespace App\Models\Entities\Common;
 
-class Numbers3List {
+class Numbers3List
+{
     private $numbersType = 3; //不要？
     private $numbers = '';
 

@@ -1,25 +1,26 @@
 <?php
 
-class Loto7 {
+class Loto7
+{
     private $sourceFile = "../pastResult/loto7-past-result.json";
     private $StaticsService;
     private $PredictService;
 
     public function __construct()
     {
-        $data = json_decode(file_get_contents($this->sourceFile),true);
+        $data = json_decode(file_get_contents($this->sourceFile), true);
         $this->StaticsService = new StaticsService($data);
         $this->PredictService = new PredictService($data);
     }
 
     public function displayStatics()
     {
-        //$this->StaticsService->displayStaticRoundsWithinRange(10,37); // 0.12 
+        //$this->StaticsService->displayStaticRoundsWithinRange(10,37); // 0.12
         // $this->StaticsService->displayStaticsConsecutiveDifferentCharOneNumbers(2); // 0.55
         //$this->StaticsService->displayStaticsRoundsHitWithInPreviousNumbers(5); // 54.62
         // $this->StaticsService->displayStaticsRoundsHitWithSameNumber(); // 0.81%
         // $this->StaticsService->displayStaticsRoundsHitWithPlusoneNumber(); // 0.81%
-        $this->StaticsService->getPreviousAllNumbers(2,5);
+        $this->StaticsService->getPreviousAllNumbers(2, 5);
     }
 
     public function predict()
@@ -36,7 +37,8 @@ $loto7->displayStatics();
 // 前回数字と数字が一つだけ同じ 123→145とか
 // 前回数字とひっくり返した数字　123 → 321など
 
-class StaticsService {
+class StaticsService
+{
     private $data;
     private $totalCount;
     private $showRounds = false;
@@ -55,7 +57,7 @@ class StaticsService {
     public function getRoundListByNumbers($numbers)
     {
         $result = [];
-        foreach($this->data as $key => $item) {
+        foreach ($this->data as $key => $item) {
             if ($item['numbers'] == $numbers) {
                 $result[] = $key;
             }
@@ -65,29 +67,28 @@ class StaticsService {
 
     private function getProbabilityPerTotal($roundCount)
     {
-        return round($roundCount / $this->totalCount * 100, 2) ."%";
+        return round($roundCount / $this->totalCount * 100, 2) . "%";
     }
 
     public function getPreviousAllNumbers($start, $previous)
     {
-        $range = range($start,$start+$previous-1);
+        $range = range($start, $start + $previous - 1);
         $data = $this->data;
         rsort($data);
-        foreach($range as $num) {
-            $numbers = explode(" ",$data[$num]['numbers']);
-            $bonus = explode(" ",$data[$num]['bonus']);
-            $array[] = array_merge($numbers, $bonus); 
+        foreach ($range as $num) {
+            $numbers = explode(" ", $data[$num]['numbers']);
+            $bonus = explode(" ", $data[$num]['bonus']);
+            $array[] = array_merge($numbers, $bonus);
         }
 
         $result = [];
-        foreach($array as $round) {
-            foreach($round as $number) {
-                if (array_key_exists($number, $result)){
+        foreach ($array as $round) {
+            foreach ($round as $number) {
+                if (array_key_exists($number, $result)) {
                     $result[$number] += 1;
                 } else {
                     $result[$number] = 1;
                 }
-
             }
         }
         var_dump($array);
@@ -98,8 +99,8 @@ class StaticsService {
 
     // /*
     //  * 連続かつ±1,±10,±100の数字が出た回。の統計を表示する。
-    //  * 
-    //  * @params $times n回の連続　(3回以上は無い模様) 
+    //  *
+    //  * @params $times n回の連続　(3回以上は無い模様)
     //  */
     // public function displayStaticsConsecutiveDifferentCharOneNumbers($times)
     // {
@@ -109,8 +110,8 @@ class StaticsService {
     // }
     // /*
     //  * 連続かつ±1,±10,±100の数字が出た回を表示する。
-    //  * 
-    //  * @params $times n回の連続　(3回以上は無い模様) 
+    //  *
+    //  * @params $times n回の連続　(3回以上は無い模様)
     //  */
     // public function getConsecutiveDifferentCharOneNumbers($times)
     // {
@@ -131,27 +132,27 @@ class StaticsService {
     //             continue ;
     //         }
     //     }
-    //     return $rounds;        
+    //     return $rounds;
     // }
 
     private function displayResultMessages($rounds)
     {
-        if ($this->showRounds){
-            foreach($rounds as $round) {
-                echo $round."回".PHP_EOL;
+        if ($this->showRounds) {
+            foreach ($rounds as $round) {
+                echo $round . "回" . PHP_EOL;
             }
         }
-        echo "全".$this->totalCount."中、".count($rounds)."回 : ".$this->getProbabilityPerTotal(count($rounds));
-        echo "-----------".PHP_EOL;
+        echo "全" . $this->totalCount . "中、" . count($rounds) . "回 : " . $this->getProbabilityPerTotal(count($rounds));
+        echo "-----------" . PHP_EOL;
     }
 
     /*
      * 当選数字が$min~$max までだった回を取得する。
      */
-    public function displayStaticRoundsWithinRange($min,$max)
+    public function displayStaticRoundsWithinRange($min, $max)
     {
-        echo $min."から".$max."までの数字だけが出た回。".PHP_EOL;
-        $rounds = $this->getRoundsWithinRange($min,$max);
+        echo $min . "から" . $max . "までの数字だけが出た回。" . PHP_EOL;
+        $rounds = $this->getRoundsWithinRange($min, $max);
 
         $this->displayResultMessages($rounds);
     }
@@ -159,17 +160,19 @@ class StaticsService {
     /*
      * 当選数字が$min~$max までだった回を取得する。
      */
-    public function getRoundsWithinRange($min,$max)
+    public function getRoundsWithinRange($min, $max)
     {
         $rounds = [];
-        foreach($this->data as $round => $item) {
-            $numbers = explode(' ',$item['numbers']);
-            
-            $bonus = explode(' ',$item['bonus']);
-            
+        foreach ($this->data as $round => $item) {
+            $numbers = explode(' ', $item['numbers']);
 
-            if (($min <= min($bonus) && max($bonus) <= $max)
-                && $min <= min($numbers) && max($numbers) <= $max) {
+            $bonus = explode(' ', $item['bonus']);
+
+
+            if (
+                ($min <= min($bonus) && max($bonus) <= $max)
+                && $min <= min($numbers) && max($numbers) <= $max
+            ) {
                     $rounds[(int)$round] = [
                         'numbers' => $numbers,
                         'bonus' => $bonus
@@ -182,7 +185,7 @@ class StaticsService {
 
     public function displayStaticsRoundsHitWithInPreviousNumbers($previous)
     {
-        echo $previous."回さかのぼって同じ数字が出た回。".PHP_EOL;
+        echo $previous . "回さかのぼって同じ数字が出た回。" . PHP_EOL;
         $rounds = $this->getRoundsHitWithInPreviousNumbers($previous);
 
         $this->displayResultMessages($rounds);
@@ -190,26 +193,26 @@ class StaticsService {
 
     /*
      * 過去、$previous回さかのぼって同じ数字が出た回を取得する。
-     * 
+     *
      * @params $previous さかのぼるn回
      */
     public function getRoundsHitWithInPreviousNumbers($previous)
     {
         $rounds = [];
 
-        foreach($this->data as $round => $item) {
+        foreach ($this->data as $round => $item) {
             //echo count($this->data).PHP_EOL;
-            if ((int)$round+ $previous >= count($this->data)) {
+            if ((int)$round + $previous >= count($this->data)) {
                 break;
             }
 
             $previousNumbersList = $this->getNumbersRange($round, $previous, 1);
             $currentNumbers = explode(' ', $this->data[$round]['numbers']);
 
-            foreach($currentNumbers as $currentNumber) {
+            foreach ($currentNumbers as $currentNumber) {
                 //echo $currentNumber.PHP_EOL;
-                foreach($previousNumbersList as $previousNumbers) {
-                    if (in_array($currentNumber,$previousNumbers)) {
+                foreach ($previousNumbersList as $previousNumbers) {
+                    if (in_array($currentNumber, $previousNumbers)) {
                         $rounds[] = $round;
                         continue 3;
                         // 100超えてる　
@@ -221,16 +224,17 @@ class StaticsService {
         return $rounds;
     }
 
-    private function getNumbersRange($start, $end, $step){
+    private function getNumbersRange($start, $end, $step)
+    {
         $array = [];
-        for($i=1;$i<=$end;$i++){
-            $numbers = (int)$this->data[(int)$start+$i*$step]['numbers'];
+        for ($i = 1; $i <= $end; $i++) {
+            $numbers = (int)$this->data[(int)$start + $i * $step]['numbers'];
             $array[] = explode(" ", $numbers);
         }
         return $array;
     }
 
- 
+
 
 
     // public function displayStaticsRoundsHitWithSameNumber()
@@ -243,7 +247,7 @@ class StaticsService {
 
     // /*
     //  * 全桁とも同じ数字が出た回を取得する。
-    //  * 
+    //  *
     //  */
     // public function getRoundsHitWithSameNumber()
     // {
@@ -268,7 +272,7 @@ class StaticsService {
     // }
     // /*
     //  * 123のような連続した数字が出た回を取得する。
-    //  * 
+    //  *
     //  */
     // public function getRoundsHitWithPlusoneNumber()
     // {
@@ -298,14 +302,15 @@ class StaticsService {
 
     //     } else if ($type == 'differentOneNumber') {
     //         return (
-    //             in_array(abs($array[1] - $array[0]),[1,10,100]) 
+    //             in_array(abs($array[1] - $array[0]),[1,10,100])
     //         );
     //     }
     // }
 }
-class PredictService {
+class PredictService
+{
     private $data;
-    
+
     public function __construct($data)
     {
         $this->data = $data;

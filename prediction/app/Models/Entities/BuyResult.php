@@ -10,7 +10,7 @@ class BuyResult
     private string $hit;
     private int $return;
 
-    public function __construct($BuyNumbers,$hit,$return)
+    public function __construct($BuyNumbers, $hit, $return)
     {
         $this->BuyNumbers = $BuyNumbers;
         $this->hit = $hit;

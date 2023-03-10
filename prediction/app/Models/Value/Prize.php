@@ -9,7 +9,7 @@ class Prize
     private Money $set;
     private Money $mini;
 
-    public function __construct($straight,$box,$set,$mini)
+    public function __construct($straight, $box, $set, $mini)
     {
         $this->straight = $straight;
         $this->box = $box;
@@ -38,5 +38,3 @@ class Prize
         return $this->mini;
     }
 }
-
-

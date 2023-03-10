@@ -20,9 +20,8 @@ class StatisticsController extends Controller
     private function convertForChart($data)
     {
         $str = "";
-        foreach($data as $key => $item){
+        foreach ($data as $key => $item) {
             $str .= "{x:$key,y:$item},";
-
         }
         return $str;
     }

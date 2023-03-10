@@ -11,11 +11,10 @@ class PredictionController extends Controller
 
     public function __construct(
         PredictionService $PredictionService
-    )
-    {
-        $this->PredictionService = $PredictionService; 
+    ) {
+        $this->PredictionService = $PredictionService;
     }
-    
+
     public function index(Request $request)
     {
         $data = $this->PredictionService->predictFromRecentFiveNumbers();

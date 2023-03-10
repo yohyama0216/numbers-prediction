@@ -13,11 +13,10 @@ class SearchController extends Controller
 
     public function __construct(
         SearchService $SearchService,
-    )
-    {
+    ) {
         $this->SearchService = $SearchService;
     }
-    
+
     public function index(Request $request)
     {
         $SearchCondition = new SearchCondition($request);

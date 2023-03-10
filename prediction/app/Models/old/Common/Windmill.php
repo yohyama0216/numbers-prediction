@@ -2,8 +2,8 @@
 
 namespace App\Models\Entities\Common;
 
-class Windmill {
-
+class Windmill
+{
     /**
      * 百の桁：0 9 8 7 6 5 4 3 2 1
      * 十の桁：0 3 6 9 2 5 8 1 4 7
@@ -24,7 +24,7 @@ class Windmill {
             9 => 4,
         ];
 
-        foreach(str_split($numbers) as $number) {
+        foreach (str_split($numbers) as $number) {
             $uraNumbers[] = $uraList[$number];
         }
         return implode($uraNumbers);

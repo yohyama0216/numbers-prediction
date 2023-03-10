@@ -10,8 +10,7 @@ class SearchService
 
     public function __construct(
         ResultRepository $ResultRepository
-    )
-    {
+    ) {
         $this->ResultRepository = $ResultRepository;
     }
 
@@ -19,11 +18,10 @@ class SearchService
     {
         return $this->ResultRepository->findAll();
     }
-    
+
 
     public function findByCondition($SearchCondition)
     {
         return $this->ResultRepository->find($SearchCondition);
     }
-
 }

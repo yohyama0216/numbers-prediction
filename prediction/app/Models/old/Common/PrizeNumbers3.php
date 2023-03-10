@@ -4,7 +4,8 @@ namespace App\Models\Entities\Common;
 
 use DateTime;
 
-class PrizeNumbers3 {
+class PrizeNumbers3
+{
     private $straightPrize = 0;
     private $boxPrize = 0;
     private $setPrize = 0;

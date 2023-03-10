@@ -13,7 +13,6 @@ class CountTarget
 
     private function validate($round)
     {
-
     }
 
     public function isCountTarget(Numbers $Numbers)

@@ -2,8 +2,8 @@
 
 namespace App\Models\Entities\Backtest;
 
-class HitNumbers3Result {
-
+class HitNumbers3Result
+{
     private $DrawingNumbers3 = null;
     private $BuyNumbers3List = null;
     private $hitStraightCount = 0;
@@ -11,7 +11,7 @@ class HitNumbers3Result {
     private $return = 0;
     private $cost = 0;
 
-    public function __construct($DrawingNumbers3,$BuyNumbers3List)
+    public function __construct($DrawingNumbers3, $BuyNumbers3List)
     {
         $this->DrawingNumbers3 = $DrawingNumbers3;
         $this->BuyNumbers3List = $BuyNumbers3List;
@@ -56,6 +56,4 @@ class HitNumbers3Result {
     {
         return $this->cost;
     }
-
-
 }

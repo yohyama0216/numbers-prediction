@@ -4,7 +4,8 @@ namespace App\Models\Entities\Common;
 
 use DateTime;
 
-class DrawingNumbers3 {
+class DrawingNumbers3
+{
     private $numbersType = 3;
     private $round = "";
     private $DateTime = null;

@@ -8,6 +8,4 @@ class PredictionService
     {
         return null;
     }
-
-
 }

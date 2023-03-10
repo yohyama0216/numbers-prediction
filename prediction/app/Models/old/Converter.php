@@ -2,8 +2,8 @@
 
 namespace Test;
 
-class Converter {
-
+class Converter
+{
     private $sourceHtmlFilePath = "data/%s-past-result.html";
     private $convertedFilePath = "data/%s-past-result.json";
     private $type;
@@ -11,10 +11,9 @@ class Converter {
     public function __construct($type)
     {
         $this->type = $type;
-        $this->sourceHtmlFilePath = sprintf($this->sourceHtmlFilePath,$this->type);
-        $this->convertedFilePath = sprintf($this->convertedFilePath,$this->type);
+        $this->sourceHtmlFilePath = sprintf($this->sourceHtmlFilePath, $this->type);
+        $this->convertedFilePath = sprintf($this->convertedFilePath, $this->type);
         $this->resultDataList = $this->createResultDataList();
-
     }
 
     private function createResultDataList()
@@ -44,21 +43,21 @@ class Converter {
 
     private function replaceHtml($html)
     {
-        $html = str_replace(' ',' ',$html); //特殊スペースを半角スペースに
-        return str_replace(['  ', '  ', "\r\n", "\r", "\n", "\t"],'',$html);
+        $html = str_replace(' ', ' ', $html); //特殊スペースを半角スペースに
+        return str_replace(['  ', '  ', "\r\n", "\r", "\n", "\t"], '', $html);
     }
 
     private function extractResultData($html)
     {
         $roundsPattern = '#<tr class=.*?</tr>#';
-        preg_match_all($roundsPattern,$html,$matches);
+        preg_match_all($roundsPattern, $html, $matches);
 
-        if ($this->type == 'loto7'){
+        if ($this->type == 'loto7') {
             $numberPattern = '#<td class="text-center text-bold">(.*).{17}?</td>#'; //もっと綺麗に？
             $bonusPattern = '#<td class="text-center text-bold">.{17}(.*)?</td>#';
             $datePattern = '#<td nowrap="nowrap" class="text-center">(\d{4}/\d{2}/\d{2})?</td>#';
             $roundPattern = '#<td nowrap="nowrap" class="text-center">第(\d{4})回?</td>#';
-        } else if ($this->type == 'numbers3') {
+        } elseif ($this->type == 'numbers3') {
             $numberPattern = '#<td class="text-center text-bold">(\d{3,4})</td>#';
             $datePattern = '#<td nowrap="nowrap" class="text-center">(\d{4}/\d{2}/\d{2})</td>#';
             $roundPattern = '#<td nowrap="nowrap" class="text-center">(\d{4,5})</td>#';
@@ -66,16 +65,16 @@ class Converter {
 
 
         $roundData = [];
-        foreach($matches[0] as $match){
-            $round = $this->getStrings($roundPattern,$match);
+        foreach ($matches[0] as $match) {
+            $round = $this->getStrings($roundPattern, $match);
             $roundData[(int)$round] = [
-                'date' => $this->getStrings($datePattern,$match),
-                'numbers' => $this->getStrings($numberPattern,$match),
-                
+                'date' => $this->getStrings($datePattern, $match),
+                'numbers' => $this->getStrings($numberPattern, $match),
+
             ];
             if ($this->type == 'loto7') {
                 $roundData[(int)$round]['bonus'] =
-                 $this->getBonus($this->getStrings($bonusPattern,$match));
+                 $this->getBonus($this->getStrings($bonusPattern, $match));
             }
         }
         //var_dump($roundData);
@@ -83,18 +82,18 @@ class Converter {
         return $roundData;
     }
 
-    private function getStrings($pattern,$subject)
+    private function getStrings($pattern, $subject)
     {
-        if ($this->type == 'loto7'){
-            $subject = str_replace('<br>','/',$subject);
+        if ($this->type == 'loto7') {
+            $subject = str_replace('<br>', '/', $subject);
         }
-        
-        preg_match($pattern,$subject,$number);
+
+        preg_match($pattern, $subject, $number);
         $result = $number[1];
         if ($result) {
             return mb_convert_encoding($result, 'UTF-8', 'UTF-8'); //マルチバイトエラー対応
         } else {
-            echo $pattern.PHP_EOL;
+            echo $pattern . PHP_EOL;
            // echo "空です".PHP_EOL;
             return "";
         }
@@ -103,6 +102,6 @@ class Converter {
     private function getBonus($numbers)
     {
         preg_match("#\(.*\)#", $numbers, $matches);
-        return str_replace(['(',')'],'',$matches[0]);
+        return str_replace(['(',')'], '', $matches[0]);
     }
 }

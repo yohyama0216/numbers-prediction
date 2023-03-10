@@ -22,6 +22,6 @@ class Round
 
     public function toString()
     {
-        return str_pad($this->round,4,'0',STR_PAD_LEFT);
+        return str_pad($this->round, 4, '0', STR_PAD_LEFT);
     }
 }

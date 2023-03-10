@@ -33,22 +33,22 @@ class Numbers
 
     public function toString()
     {
-        return str_pad($this->numbers,$this->numbersType,'0',STR_PAD_LEFT);
+        return str_pad($this->numbers, $this->numbersType, '0', STR_PAD_LEFT);
     }
 
     public function getDigit100()
     {
-        return substr($this->toString(),0,1);
+        return substr($this->toString(), 0, 1);
     }
 
     public function getDigit10()
     {
-        return substr($this->toString(),1,1);
+        return substr($this->toString(), 1, 1);
     }
 
     public function getDigit1()
     {
-        return substr($this->toString(),2,1);
+        return substr($this->toString(), 2, 1);
     }
 
     public function isSameBox($Numbers)
@@ -56,7 +56,7 @@ class Numbers
         $arr1 = str_split($this->toString());
         sort($arr1);
         $arr2 = str_split($Numbers->toString());
-        sort($arr2);        
+        sort($arr2);
         return implode($arr1) == implode($arr2);
     }
 
@@ -85,7 +85,7 @@ class Numbers
     public function getMini()
     {
         if ($this->isNumbers3()) {
-            return substr($this->numbers,2);
+            return substr($this->numbers, 2);
         }
         // invalidNumbersException?
         return null;

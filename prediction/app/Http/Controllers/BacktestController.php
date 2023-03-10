@@ -13,11 +13,10 @@ class BacktestController extends Controller
 
     public function __construct(
         BacktestService $BacktestService
-    )
-    {
+    ) {
         $this->BacktestService = $BacktestService;
     }
-    
+
     public function index(Request $request)
     {
         $data = $this->BacktestService->buySameDigitNumbers();

@@ -2,8 +2,8 @@
 
 namespace App\Models\Entities\Statistics;
 
-class CountResult {
-
+class CountResult
+{
     private $Target = '';
     private $count = 1;
 
