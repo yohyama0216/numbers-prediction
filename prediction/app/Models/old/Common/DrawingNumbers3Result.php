@@ -7,13 +7,13 @@ use DateTime;
 class DrawingNumbers3Result
 {
     private $numbersType = 3;
-    private $Numbers = null;
-    private $PrizeNumbers3 = null;
+    private $numbers = null;
+    private $prizeNumbers3 = null;
 
-    public function __construct($Numbers, $PrizeNumbers3)
+    public function __construct($numbers, $prizeNumbers3)
     {
-        $this->Numbers = $Numbers;
-        $this->PrizeNumbers3 = $PrizeNumbers3;
+        $this->Numbers = $numbers;
+        $this->PrizeNumbers3 = $prizeNumbers3;
     }
 
     public function getNumbers()

@@ -20,9 +20,9 @@ class ResultRepository
     {
         $countList = [];
         $query = Result::groupBy('numbers')
-                    ->select('browser', DB::raw('numbers, count(*) as count'))
-                    ->orderBy('count', $order)
-                    ->limit($length);
+            ->select('browser', DB::raw('numbers, count(*) as count'))
+            ->orderBy('count', $order)
+            ->limit($length);
         $countList = $query->get();
         return $this->toCountResultList($countList);
     }
@@ -36,23 +36,23 @@ class ResultRepository
         return new CountResultList($list);
     }
 
-    public function find($SearchCondition)
+    public function find($searchCondition)
     {
-        $collection = Result::with(['drawing','prize'])->get();
-        $filtered = $collection->filter(function ($result) use ($SearchCondition) {
-            return $SearchCondition->match($result);
+        $collection = Result::with(['drawing', 'prize'])->get();
+        $filtered = $collection->filter(function ($result) use ($searchCondition) {
+            return $searchCondition->match($result);
         });
 
-        return $this->toDrawingResultList($SearchCondition, $filtered->slice(0, 20));
+        return $this->toDrawingResultList($searchCondition, $filtered->slice(0, 20));
     }
 
     public function findAll()
     {
-        $collection = Result::with(['drawing','prize'])->get();
+        $collection = Result::with(['drawing', 'prize'])->get();
         return $this->toDrawingResultList(null, $collection);
     }
 
-    private function toDrawingResultList($SearchCondition, $collection)
+    private function toDrawingResultList($searchCondition, $collection)
     {
         $list = [];
         foreach ($collection as $item) {

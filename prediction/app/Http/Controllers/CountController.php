@@ -7,12 +7,12 @@ use App\Services\CountService;
 
 class CountController extends Controller
 {
-    private $CountService = null;
+    private $countService = null;
 
     public function __construct(
-        CountService $CountService
+        CountService $countService
     ) {
-        $this->CountService = $CountService;
+        $this->CountService = $countService;
     }
 
     public function index(Request $request)

@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 
 class Date
 {
-    private Carbon $DateTime;
+    private Carbon $dateTime;
 
     public function __construct($datetimeString)
     {

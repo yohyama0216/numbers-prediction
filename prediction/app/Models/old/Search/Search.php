@@ -4,7 +4,7 @@ namespace Test\Search;
 
 class Search
 {
-    private $NumbersPastData = [];
+    private $numbersPastData = [];
     private $searchResult = [];
 
     public function __construct($data)
@@ -79,7 +79,7 @@ class Search
     {
         $result = array_filter($this->NumbersPastData->getData(), function ($v, $k) use ($prevs, $step, $digit) {
             echo $this->NumbersPastData->getPatternWithinPrevs($k, $prevs, $step, $digit);
-            return ;
+            return;
         }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
     }
@@ -118,8 +118,8 @@ class Search
     public function countNum10AndNum1Pair()
     {
         $result = [
-            [],[],[],[],[],
-            [],[],[],[],[]
+            [], [], [], [], [],
+            [], [], [], [], []
         ];
         foreach ($this->hitRawNumbersList as $numbers) {
             $mainKey = $numbers['num10'];

@@ -9,8 +9,8 @@ class StatisticsController extends Controller
 {
     public function index(Request $request)
     {
-        $DrawingNumbers3Service = new Services\DrawingNumbers3Service();
-        $data = $DrawingNumbers3Service->findAll();
+        $drawingNumbers3Service = new Services\DrawingNumbers3Service();
+        $data = $drawingNumbers3Service->findAll();
         $statisticsService = new Services\statisticsService($data);
         $data = $statisticsService->executeCounter();
         //$data = $this->convertForChart($data);

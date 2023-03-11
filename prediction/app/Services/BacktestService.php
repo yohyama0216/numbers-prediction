@@ -7,58 +7,64 @@ use App\Models\Entities\BuyResult;
 use App\Models\Entities\BuyResultList;
 use App\Models\Value\Numbers;
 use App\Repositories\ResultRepository;
-use App\Services\Shared\GenerateService;
+use App\Services\Shared\generateService;
 
 class BacktestService
 {
-    private $ResultRepository;
-    private $GenerateService;
+    private $resultRepository;
+    private $generateService;
 
     public function __construct(
-        ResultRepository $ResultRepository,
-        GenerateService $GenerateService
+        ResultRepository $resultRepository,
+        generateService $generateService
     ) {
-        $this->ResultRepository = $ResultRepository;
-        $this->GenerateService = $GenerateService;
+        $this->resultRepository = $resultRepository;
+        $this->generateService = $generateService;
     }
 
     public function buySameDigitNumbers()
     {
-        $collection = $this->ResultRepository->findAll();
-        $BuyResultList = [];
-        foreach ($collection as $Result) {
-            $BuyNumbersList = [
-                    new BuyNumbers($Result->getRound(), 'straight', new Numbers(355))
+        $collection = $this->resultRepository->findAll();
+        $buyResultList = [];
+        foreach ($collection as $result) {
+            $buyNumbersList = [
+                new BuyNumbers($result->getRound(), 'straight', new Numbers(355))
             ];
-            foreach ($BuyNumbersList as $BuyNumbers) {
-                if ($BuyNumbers->getRound()->toString() != $Result->getRound()->toString()) {
-                    continue ;
+            foreach ($buyNumbersList as $buyNumbers) {
+                if ($buyNumbers->getRound()->toString() != $result->getRound()->toString()) {
+                    continue;
                 }
 
                 $hit = '';
                 $return = 0;
-                if ($BuyNumbers->getType() == 'straight' && $Result->getNumbers()->isSameStraight($BuyNumbers->getNumbers())) {
+                if (
+                    $buyNumbers->getType() == 'straight'
+                    && $result->getNumbers()->isSameStraight($buyNumbers->getNumbers())
+                ) {
                     $hit = 'straight';
-                    $return = $Result->getPrize('straight');
-                } elseif ($BuyNumbers->getType() == 'box' && $Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())) {
+                    $return = $result->getPrize('straight');
+                } elseif (
+                    $buyNumbers->getType() == 'box'
+                    && $result->getNumbers()->isSameBox($buyNumbers->getNumbers())
+                ) {
                     $hit = 'box';
-                    $return = $Result->getPrize('box');
-                } elseif ($BuyNumbers->getType() == 'set') {
-                    if ($Result->getNumbers()->isSameStraight($BuyNumbers->getNumbers())) {
+                    $return = $result->getPrize('box');
+                } elseif ($buyNumbers->getType() == 'set') {
+                    if ($result->getNumbers()->isSameStraight($buyNumbers->getNumbers())) {
                         $hit = 'set';
-                        $return = $Result->getPrize('setStraight');
-                    } elseif ($Result->getNumbers()->isSameBox($BuyNumbers->getNumbers())) {
+                        $return = $result->getPrize('setStraight');
+                    } elseif ($result->getNumbers()->isSameBox($buyNumbers->getNumbers())) {
                         $hit = 'set';
-                        $return = $Result->getPrize('setBox');
+                        $return = $result->getPrize('setBox');
                     }
                 }
-                $BuyResultList[] = new BuyResult(
-                    $BuyNumbers,
+                $buyResultList[] = new BuyResult(
+                    $buyNumbers,
                     $hit,
                     $return,
                 );
             }
         }
-        return new BuyResultList($BuyResultList);
+        return new BuyResultList($buyResultList);
     }
 }

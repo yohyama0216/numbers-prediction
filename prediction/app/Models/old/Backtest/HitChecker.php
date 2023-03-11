@@ -6,23 +6,23 @@ use App\Models\Entities\Common;
 
 class HitChecker
 {
-    public static function check($DrawingNumbers3, $BuyNumbers3List)
+    public static function check($drawingNumbers3, $buyNumbers3List)
     {
-        $HitNumbers3Result = new HitNumbers3Result($DrawingNumbers3, $BuyNumbers3List);
-        foreach ($BuyNumbers3List as $BuyNumbers3) {
-            $Numbers = $BuyNumbers3->getNumbers();
-            $NumbersHit = $DrawingNumbers3->getDrawingNumbers3Result()->getNumbers();
-            if ($NumbersHit->isSameStraight($Numbers)) {
+        $hitNumbers3Result = new HitNumbers3Result($drawingNumbers3, $buyNumbers3List);
+        foreach ($buyNumbers3List as $buyNumbers3) {
+            $numbers = $buyNumbers3->getNumbers();
+            $numbersHit = $drawingNumbers3->getDrawingNumbers3Result()->getNumbers();
+            if ($numbersHit->isSameStraight($numbers)) {
                 $straightReturn = 90000;
-                $HitNumbers3Result->addHitStraightCount();
-                $HitNumbers3Result->addReturn($straightReturn);
-            } elseif ($NumbersHit->isSameBox($Numbers)) {
+                $hitNumbers3Result->addHitStraightCount();
+                $hitNumbers3Result->addReturn($straightReturn);
+            } elseif ($numbersHit->isSameBox($numbers)) {
                 $boxReturn = 10000;
-                $HitNumbers3Result->addHitBoxCount();
-                $HitNumbers3Result->addReturn($boxReturn);
+                $hitNumbers3Result->addHitBoxCount();
+                $hitNumbers3Result->addReturn($boxReturn);
             }
-            $HitNumbers3Result->addCost($BuyNumbers3->calcCost());
+            $hitNumbers3Result->addCost($buyNumbers3->calcCost());
         }
-        return $HitNumbers3Result;
+        return $hitNumbers3Result;
     }
 }

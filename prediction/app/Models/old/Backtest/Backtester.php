@@ -6,21 +6,21 @@ use App\Models\Entities\Common;
 
 class Backtester
 {
-    private $DrawingNumbers3list = '';
+    private $drawingNumbers3list = '';
 
-    public function __construct($DrawingNumbers3list)
+    public function __construct($drawingNumbers3list)
     {
-        $this->DrawingNumbers3list = $DrawingNumbers3list;
+        $this->DrawingNumbers3list = $drawingNumbers3list;
     }
 
     public function buySameDigitNumbers()
     {
-        $BuyNumbers3List = BuyNumbers3List::createSameDigitBuyNumbers3();
-        $HitNumbers3ResultList = new HitNumbers3ResultList();
-        foreach ($this->DrawingNumbers3list as $DrawingNumbers3) {
-            $HitNumbers3ResultList[] = HitChecker::check($DrawingNumbers3, $BuyNumbers3List);
+        $buyNumbers3List = BuyNumbers3List::createSameDigitBuyNumbers3();
+        $hitNumbers3ResultList = new HitNumbers3ResultList();
+        foreach ($this->DrawingNumbers3list as $drawingNumbers3) {
+            $hitNumbers3ResultList[] = HitChecker::check($drawingNumbers3, $buyNumbers3List);
         }
-        return $HitNumbers3ResultList->calcTotalResult();
+        return $hitNumbers3ResultList->calcTotalResult();
     }
 
     // 駄目だったケース

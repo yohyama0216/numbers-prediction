@@ -51,18 +51,18 @@ class Numbers
         return substr($this->toString(), 2, 1);
     }
 
-    public function isSameBox($Numbers)
+    public function isSameBox($numbers)
     {
         $arr1 = str_split($this->toString());
         sort($arr1);
-        $arr2 = str_split($Numbers->toString());
+        $arr2 = str_split($numbers->toString());
         sort($arr2);
         return implode($arr1) == implode($arr2);
     }
 
-    public function isSameStraight($Numbers)
+    public function isSameStraight($numbers)
     {
-        return $this->toString() == $Numbers->toString();
+        return $this->toString() == $numbers->toString();
     }
 
     public function isSameDigit()

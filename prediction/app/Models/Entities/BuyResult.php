@@ -6,13 +6,13 @@ use App\Models\Entities\BuyNumbers;
 
 class BuyResult
 {
-    private BuyNumbers $BuyNumbers;
+    private BuyNumbers $buyNumbers;
     private string $hit;
     private int $return;
 
-    public function __construct($BuyNumbers, $hit, $return)
+    public function __construct($buyNumbers, $hit, $return)
     {
-        $this->BuyNumbers = $BuyNumbers;
+        $this->BuyNumbers = $buyNumbers;
         $this->hit = $hit;
         $this->return = $return;
     }

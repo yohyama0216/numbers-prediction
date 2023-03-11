@@ -8,19 +8,19 @@ use App\Models\Entities\SearchCondition;
 
 class SearchController extends Controller
 {
-    private $SearchService;
-    private $SearchCondition;
+    private $searchService;
+    private $searchCondition;
 
     public function __construct(
-        SearchService $SearchService,
+        SearchService $searchService,
     ) {
-        $this->SearchService = $SearchService;
+        $this->SearchService = $searchService;
     }
 
     public function index(Request $request)
     {
-        $SearchCondition = new SearchCondition($request);
-        $data = $this->SearchService->findByCondition($SearchCondition);
+        $searchCondition = new SearchCondition($request);
+        $data = $this->SearchService->findByCondition($searchCondition);
         return view('search.list', compact('data'));
     }
 }

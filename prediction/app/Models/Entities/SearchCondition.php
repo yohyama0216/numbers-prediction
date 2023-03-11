@@ -8,11 +8,11 @@ class SearchCondition
     private $dateFrom;
     private $dateTo;
 
-    public function __construct($Request)
+    public function __construct($request)
     {
-        $this->numbers = $Request->query('numbers');
-        $this->dateFrom = $Request->query('dateFrom');
-        $this->dateTo = $Request->query('dateTo');
+        $this->numbers = $request->query('numbers');
+        $this->dateFrom = $request->query('dateFrom');
+        $this->dateTo = $request->query('dateTo');
     }
 
     public function hasCondition()
@@ -20,14 +20,14 @@ class SearchCondition
         return $this->numbers || $this->dateFrom || $this->dateTo;
     }
 
-    public function match($Result)
+    public function match($result)
     {
         if (empty($this->numbers)) {
             return true;
         }
 
         // boxとかは？
-        if ($this->numbers && $this->numbers != $Result['numbers']) {
+        if ($this->numbers && $this->numbers != $result['numbers']) {
             return false;
         }
         return true;

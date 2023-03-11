@@ -8,9 +8,9 @@ class DrawingNumbers3
 {
     private $numbersType = 3;
     private $round = "";
-    private $DateTime = null;
+    private $dateTime = null;
     private $status = 0; // 0:未抽選
-    private $DrawingNumbers3Result = null;
+    private $drawingNumbers3Result = null;
 
     public function __construct($round, $date)
     {
@@ -43,8 +43,8 @@ class DrawingNumbers3
         return $this->DrawingNumbers3Result;
     }
 
-    public function setDrawingNumbers3Result($DrawingNumbers3Result)
+    public function setDrawingNumbers3Result($drawingNumbers3Result)
     {
-        return $this->DrawingNumbers3Result = $DrawingNumbers3Result;
+        return $this->DrawingNumbers3Result = $drawingNumbers3Result;
     }
 }

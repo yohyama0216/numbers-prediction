@@ -4,19 +4,19 @@ namespace App\Models\Value;
 
 class CountTarget
 {
-    private Numbers $Numbers;
+    private Numbers $numbers;
 
-    public function __construct($Numbers)
+    public function __construct($numbers)
     {
-        $this->Numbers = $this->validate($Numbers);
+        $this->Numbers = $this->validate($numbers);
     }
 
     private function validate($round)
     {
     }
 
-    public function isCountTarget(Numbers $Numbers)
+    public function isCountTarget(Numbers $numbers)
     {
-        return $this->Numbers->isSameStraight($Numbers);
+        return $this->Numbers->isSameStraight($numbers);
     }
 }

@@ -16,8 +16,8 @@
     <file>app</file>
     <!-- 対象外のファイル、ディレクトリ -->
     <exclude-pattern>app/Http/Controllers/Controller.php</exclude-pattern>
-    <exclude-pattern>app/Http/Controllers/BasicController.php</exclude-pattern>
     <exclude-pattern>app/Console/Kernel.php</exclude-pattern>
+        <exclude-pattern>app/Models/old</exclude-pattern>
 
     <!-- testsディレクトリ配下はメソッド名のキャメルケースチェックを除外する -->
     <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">

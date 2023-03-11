@@ -14,8 +14,8 @@ class Numbers3Serial extends ArrayObject
         }
         return implode('→', $stringSplit);
     }
-    public function isSameStraight($NumbersSerial)
+    public function isSameStraight($numbersSerial)
     {
-        return $this->toString() == $NumbersSerial->toString();
+        return $this->toString() == $numbersSerial->toString();
     }
 }

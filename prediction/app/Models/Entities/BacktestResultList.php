@@ -1,12 +1,14 @@
 <?php
 
+namespace App\Models\Entities;
+
 use App\Models\Value;
 
-class BacktestResult
+class BacktestResultList
 {
-    private Value\Round $Round;
-    private Value\Numbers $Numbers;
-    private Value\Prize $Prize;
+    private Value\Round $round;
+    private Value\Numbers $numbers;
+    private Value\Prize $prize;
 
     // DrawingResult と BuyNumers と BuyNumbersResult?
 

@@ -21,9 +21,9 @@ class GenerateService
      */
     public function fromRecentFiveNumbers($list)
     {
-        $list = [111,123,456,887,991];
+        $list = [111, 123, 456, 887, 991];
         $list = array_unique(str_split(implode($list)));
         // todo
-        return ['111','333'];
+        return ['111', '333'];
     }
 }

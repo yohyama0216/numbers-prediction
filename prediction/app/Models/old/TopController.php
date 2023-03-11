@@ -10,8 +10,8 @@ class TopController extends Controller
 {
     public function index(Request $request)
     {
-        $DrawingNumbers3Service = new Services\DrawingNumbers3Service();
-        $data = $DrawingNumbers3Service->findAll();
+        $drawingNumbers3Service = new Services\DrawingNumbers3Service();
+        $data = $drawingNumbers3Service->findAll();
         return view('top.index', compact('data'));
     }
 }

@@ -6,22 +6,22 @@ use App\Repositories\ResultRepository;
 
 class SearchService
 {
-    private $ResultRepository;
+    private $resultRepository;
 
     public function __construct(
-        ResultRepository $ResultRepository
+        ResultRepository $resultRepository
     ) {
-        $this->ResultRepository = $ResultRepository;
+        $this->resultRepository = $resultRepository;
     }
 
     public function findAll()
     {
-        return $this->ResultRepository->findAll();
+        return $this->resultRepository->findAll();
     }
 
 
-    public function findByCondition($SearchCondition)
+    public function findByCondition($searchCondition)
     {
-        return $this->ResultRepository->find($SearchCondition);
+        return $this->resultRepository->find($searchCondition);
     }
 }

@@ -1,31 +1,33 @@
 <?php
 
+namespace App\Models\Entities;
+
 class Loto7
 {
     private $sourceFile = "../pastResult/loto7-past-result.json";
-    private $StaticsService;
-    private $PredictService;
+    private $staticsService;
+    private $predictService;
 
     public function __construct()
     {
         $data = json_decode(file_get_contents($this->sourceFile), true);
-        $this->StaticsService = new StaticsService($data);
-        $this->PredictService = new PredictService($data);
+        $this->staticsService = new StaticsService($data);
+        $this->predictService = new PredictService($data);
     }
 
     public function displayStatics()
     {
-        //$this->StaticsService->displayStaticRoundsWithinRange(10,37); // 0.12
-        // $this->StaticsService->displayStaticsConsecutiveDifferentCharOneNumbers(2); // 0.55
-        //$this->StaticsService->displayStaticsRoundsHitWithInPreviousNumbers(5); // 54.62
-        // $this->StaticsService->displayStaticsRoundsHitWithSameNumber(); // 0.81%
-        // $this->StaticsService->displayStaticsRoundsHitWithPlusoneNumber(); // 0.81%
-        $this->StaticsService->getPreviousAllNumbers(2, 5);
+        //$this->staticsService->displayStaticRoundsWithinRange(10,37); // 0.12
+        // $this->staticsService->displayStaticsConsecutiveDifferentCharOneNumbers(2); // 0.55
+        //$this->staticsService->displayStaticsRoundsHitWithInPreviousNumbers(5); // 54.62
+        // $this->staticsService->displayStaticsRoundsHitWithSameNumber(); // 0.81%
+        // $this->staticsService->displayStaticsRoundsHitWithPlusoneNumber(); // 0.81%
+        $this->staticsService->getPreviousAllNumbers(2, 5);
     }
 
     public function predict()
     {
-        $this->PredictService->predict();
+        $this->predictService->predict();
     }
 }
 
@@ -173,10 +175,10 @@ class StaticsService
                 ($min <= min($bonus) && max($bonus) <= $max)
                 && $min <= min($numbers) && max($numbers) <= $max
             ) {
-                    $rounds[(int)$round] = [
-                        'numbers' => $numbers,
-                        'bonus' => $bonus
-                    ];
+                $rounds[(int)$round] = [
+                    'numbers' => $numbers,
+                    'bonus' => $bonus
+                ];
             }
         }
         //var_dump($numbers);

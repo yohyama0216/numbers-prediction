@@ -7,17 +7,17 @@ use App\Services\PredictionService;
 
 class PredictionController extends Controller
 {
-    private $PredictionService = null;
+    private $predictionService = null;
 
     public function __construct(
-        PredictionService $PredictionService
+        PredictionService $predictionService
     ) {
-        $this->PredictionService = $PredictionService;
+        $this->predictionService = $predictionService;
     }
 
     public function index(Request $request)
     {
-        $data = $this->PredictionService->predictFromRecentFiveNumbers();
+        $data = $this->predictionService->predictFromRecentFiveNumbers();
         return view('Prediction.list', compact('data'));
     }
 }

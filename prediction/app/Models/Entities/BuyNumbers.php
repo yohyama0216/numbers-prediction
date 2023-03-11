@@ -6,17 +6,17 @@ use App\Models\Value\Round;
 
 class BuyNumbers
 {
-    private Round $Round;
+    private Round $round;
     private $type;
-    private $Numbers = '';
+    private $numbers = '';
     private $size;
     private const YEN_PER_SIZE = 200;
 
-    public function __construct($Round, $type, $Numbers, $size = 1)
+    public function __construct($round, $type, $numbers, $size = 1)
     {
-        $this->Round = $Round;
+        $this->Round = $round;
         $this->type = $type;
-        $this->Numbers = $Numbers;
+        $this->Numbers = $numbers;
         $this->size = $size;
     }
 

@@ -4,12 +4,12 @@ namespace App\Models\Entities\Statistics;
 
 class CountResult
 {
-    private $Target = '';
+    private $target = '';
     private $count = 1;
 
-    public function __construct($Target)
+    public function __construct($target)
     {
-        $this->Target = $Target;
+        $this->Target = $target;
     }
 
     public function getTarget()

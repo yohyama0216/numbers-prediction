@@ -6,11 +6,11 @@ use App\Models\Entities\Common;
 
 class Counter
 {
-    private $DrawingNumbers3list = '';
+    private $drawingNumbers3list = '';
 
-    public function __construct($DrawingNumbers3list)
+    public function __construct($drawingNumbers3list)
     {
-        $this->DrawingNumbers3list = $DrawingNumbers3list;
+        $this->DrawingNumbers3list = $drawingNumbers3list;
     }
 
     public function countStraightNumbers3()

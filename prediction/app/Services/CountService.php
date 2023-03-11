@@ -6,21 +6,21 @@ use App\Repositories\ResultRepository;
 
 class CountService
 {
-    private $ResultRepository;
+    private $resultRepository;
 
     public function __construct(
-        ResultRepository $ResultRepository
+        ResultRepository $resultRepository
     ) {
-        $this->ResultRepository = $ResultRepository;
+        $this->resultRepository = $resultRepository;
     }
 
     public function getCountTop5()
     {
-        return $this->ResultRepository->getCountList(5, 'desc');
+        return $this->resultRepository->getCountList(5, 'desc');
     }
 
     public function getCountWorst5()
     {
-        return $this->ResultRepository->getCountList(5, 'desc');
+        return $this->resultRepository->getCountList(5, 'desc');
     }
 }

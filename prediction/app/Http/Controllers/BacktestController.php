@@ -8,13 +8,13 @@ use App\Services\BacktestService;
 
 class BacktestController extends Controller
 {
-    private $SearchService = null;
-    private $BacktestService = null;
+    private $searchService = null;
+    private $backtestService = null;
 
     public function __construct(
-        BacktestService $BacktestService
+        BacktestService $backtestService
     ) {
-        $this->BacktestService = $BacktestService;
+        $this->BacktestService = $backtestService;
     }
 
     public function index(Request $request)

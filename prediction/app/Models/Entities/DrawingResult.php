@@ -9,17 +9,17 @@ use App\Models\Value\Prize;
 
 class DrawingResult
 {
-    private Round $Round;
-    private Date $Date;
-    private Numbers $Numbers;
-    private Prize $Prize;
+    private Round $round;
+    private Date $date;
+    private Numbers $numbers;
+    private Prize $prize;
 
-    public function __construct(Round $Round, Date $Date, Numbers $Numbers, Prize $Prize)
+    public function __construct(Round $round, Date $date, Numbers $numbers, Prize $prize)
     {
-        $this->Round = $Round;
-        $this->Date = $Date;
-        $this->Numbers = $Numbers;
-        $this->Prize = $Prize;
+        $this->Round = $round;
+        $this->Date = $date;
+        $this->Numbers = $numbers;
+        $this->Prize = $prize;
     }
 
     public function getRound()

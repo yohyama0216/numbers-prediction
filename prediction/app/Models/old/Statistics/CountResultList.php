@@ -6,16 +6,16 @@ use ArrayObject;
 
 class CountResultList extends ArrayObject
 {
-    public function addCountResult($Target, $type = 'straight')
+    public function addCountResult($target, $type = 'straight')
     {
         $func = ($type == 'box') ? 'isSameBox' : 'isSameStraight';
         foreach ($this as $key => $item) {
-            if ($item->getTarget()->$func($Target)) {
+            if ($item->getTarget()->$func($target)) {
                 $this[$key]->addCount();
                 return $this;
             }
         }
-        $this[] = (new CountResult($Target));
+        $this[] = (new CountResult($target));
         return $this;
     }
 

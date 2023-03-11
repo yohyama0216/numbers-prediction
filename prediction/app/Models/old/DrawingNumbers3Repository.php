@@ -26,11 +26,14 @@ class DrawingNumbers3Repository
         $numbersList = self::getResource();
         $list = [];
         foreach ($numbersList as $key => $numbers) {
-            $PrizeNumbers3 = new Common\PrizeNumbers3(0, 0, 0, 0);
-            $DrawingNumbers3 = new Common\DrawingNumbers3($key, $numbers['date']);
-            $DrawingNumbers3Result = new Common\DrawingNumbers3Result(new Common\Numbers3($numbers['numbers']), $PrizeNumbers3);
-            $DrawingNumbers3->setDrawingNumbers3Result($DrawingNumbers3Result);
-            $list[] = $DrawingNumbers3;
+            $prizeNumbers3 = new Common\PrizeNumbers3(0, 0, 0, 0);
+            $drawingNumbers3 = new Common\DrawingNumbers3($key, $numbers['date']);
+            $drawingNumbers3Result = new Common\DrawingNumbers3Result(
+                new Common\Numbers3($numbers['numbers']),
+                $prizeNumbers3
+            );
+            $drawingNumbers3->setDrawingNumbers3Result($drawingNumbers3Result);
+            $list[] = $drawingNumbers3;
         }
         return new Common\DrawingNumbers3List($list);
     }

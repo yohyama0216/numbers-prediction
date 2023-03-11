@@ -22,7 +22,7 @@ class Converter
 
         if (!$html) {
             echo "ファイルは空です";
-            return ;
+            return;
         }
         $html = $this->replaceHtml($html);
 
@@ -74,7 +74,7 @@ class Converter
             ];
             if ($this->type == 'loto7') {
                 $roundData[(int)$round]['bonus'] =
-                 $this->getBonus($this->getStrings($bonusPattern, $match));
+                    $this->getBonus($this->getStrings($bonusPattern, $match));
             }
         }
         //var_dump($roundData);
@@ -94,7 +94,7 @@ class Converter
             return mb_convert_encoding($result, 'UTF-8', 'UTF-8'); //マルチバイトエラー対応
         } else {
             echo $pattern . PHP_EOL;
-           // echo "空です".PHP_EOL;
+            // echo "空です".PHP_EOL;
             return "";
         }
     }
@@ -102,6 +102,6 @@ class Converter
     private function getBonus($numbers)
     {
         preg_match("#\(.*\)#", $numbers, $matches);
-        return str_replace(['(',')'], '', $matches[0]);
+        return str_replace(['(', ')'], '', $matches[0]);
     }
 }
