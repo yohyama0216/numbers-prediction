@@ -44,6 +44,6 @@ class SearchCondition
 
     public function hasConsecutiveCondition()
     {
-        return false;
+        return true;
     }
 }

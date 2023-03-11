@@ -21,6 +21,10 @@ class SearchController extends Controller
     {
         $searchCondition = new SearchCondition($request);
         $data = $this->searchService->findByCondition($searchCondition);
-        return view('search.list', compact('data'));
+        if ($searchCondition->hasConsecutiveCondition()) {
+            return view('search.consecutive_list', compact('data'));
+        } else {
+            return view('search.list', compact('data'));
+        }
     }
 }
