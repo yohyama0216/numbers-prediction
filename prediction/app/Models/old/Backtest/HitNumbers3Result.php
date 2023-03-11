@@ -14,7 +14,7 @@ class HitNumbers3Result
     public function __construct($drawingNumbers3, $buyNumbers3List)
     {
         $this->DrawingNumbers3 = $drawingNumbers3;
-        $this->BuyNumbers3List = $buyNumbers3List;
+        $this->buyNumbers3List = $buyNumbers3List;
     }
 
     public function addHitStraightCount()

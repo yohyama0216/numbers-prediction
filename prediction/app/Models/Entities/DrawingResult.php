@@ -16,15 +16,15 @@ class DrawingResult
 
     public function __construct(Round $round, Date $date, Numbers $numbers, Prize $prize)
     {
-        $this->Round = $round;
+        $this->round = $round;
         $this->Date = $date;
-        $this->Numbers = $numbers;
+        $this->numbers = $numbers;
         $this->Prize = $prize;
     }
 
     public function getRound()
     {
-        return $this->Round;
+        return $this->round;
     }
 
     public function getDate()
@@ -34,12 +34,12 @@ class DrawingResult
 
     public function getNumbers()
     {
-        return $this->Numbers;
+        return $this->numbers;
     }
 
     public function getResultNumbers()
     {
-        return $this->Numbers->toString();
+        return $this->numbers->toString();
     }
 
     public function getPrize($type)

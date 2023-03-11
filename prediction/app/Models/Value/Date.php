@@ -10,7 +10,7 @@ class Date
 
     public function __construct($datetimeString)
     {
-        $this->DateTime = $this->validate($datetimeString);
+        $this->dateTime = $this->validate($datetimeString);
     }
 
     private function validate($datetimeString)
@@ -28,6 +28,6 @@ class Date
 
     public function toString()
     {
-        return $this->DateTime->toDateString();
+        return $this->dateTime->toDateString();
     }
 }

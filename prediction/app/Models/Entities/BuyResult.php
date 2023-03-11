@@ -12,14 +12,14 @@ class BuyResult
 
     public function __construct($buyNumbers, $hit, $return)
     {
-        $this->BuyNumbers = $buyNumbers;
+        $this->buyNumbers = $buyNumbers;
         $this->hit = $hit;
         $this->return = $return;
     }
 
     public function getBuyNumbers()
     {
-        return $this->BuyNumbers;
+        return $this->buyNumbers;
     }
 
     public function getHit()

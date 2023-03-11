@@ -7,7 +7,7 @@ use App\Models\Entities\BuyResult;
 use App\Models\Entities\BuyResultList;
 use App\Models\Value\Numbers;
 use App\Repositories\ResultRepository;
-use App\Services\Shared\generateService;
+use App\Services\Shared\GenerateService;
 
 class BacktestService
 {
@@ -16,7 +16,7 @@ class BacktestService
 
     public function __construct(
         ResultRepository $resultRepository,
-        generateService $generateService
+        GenerateService $generateService
     ) {
         $this->resultRepository = $resultRepository;
         $this->generateService = $generateService;

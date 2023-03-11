@@ -14,25 +14,25 @@ class BuyNumbers
 
     public function __construct($round, $type, $numbers, $size = 1)
     {
-        $this->Round = $round;
+        $this->round = $round;
         $this->type = $type;
-        $this->Numbers = $numbers;
+        $this->numbers = $numbers;
         $this->size = $size;
     }
 
     public function getRound()
     {
-        return $this->Round;
+        return $this->round;
     }
 
     public function getNumbers()
     {
-        return $this->Numbers;
+        return $this->numbers;
     }
 
     public function toString()
     {
-        return $this->Numbers->toString();
+        return $this->numbers->toString();
     }
 
     public function getSize()

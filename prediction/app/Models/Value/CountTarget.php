@@ -8,7 +8,7 @@ class CountTarget
 
     public function __construct($numbers)
     {
-        $this->Numbers = $this->validate($numbers);
+        $this->numbers = $this->validate($numbers);
     }
 
     private function validate($round)
@@ -17,6 +17,6 @@ class CountTarget
 
     public function isCountTarget(Numbers $numbers)
     {
-        return $this->Numbers->isSameStraight($numbers);
+        return $this->numbers->isSameStraight($numbers);
     }
 }

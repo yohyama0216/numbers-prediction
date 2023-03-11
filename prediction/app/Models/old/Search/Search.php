@@ -9,7 +9,7 @@ class Search
 
     public function __construct($data)
     {
-        $this->NumbersPastData = $data;
+        $this->numbersPastData = $data;
     }
 
     /*
@@ -19,7 +19,7 @@ class Search
      */
     public function searchAllNumbers()
     {
-        $this->searchResult = $this->NumbersPastData->getData();
+        $this->searchResult = $this->numbersPastData->getData();
     }
 
     /*
@@ -27,7 +27,7 @@ class Search
      */
     public function searchSameDigitNumbers()
     {
-        $result = array_filter($this->NumbersPastData->getData(), function ($v) {
+        $result = array_filter($this->numbersPastData->getData(), function ($v) {
             return $v->isSameDigit();
         }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
@@ -43,7 +43,7 @@ class Search
      */
     public function searchStepNumbers()
     {
-        $result = array_filter($this->NumbersPastData->getData(), function ($v) {
+        $result = array_filter($this->numbersPastData->getData(), function ($v) {
             return $v->isStep();
         }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
@@ -54,7 +54,7 @@ class Search
      */
     public function searchMirrorNumbers()
     {
-        $result = array_filter($this->NumbersPastData->getData(), function ($v) {
+        $result = array_filter($this->numbersPastData->getData(), function ($v) {
             return $v->isMirror();
         }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
@@ -65,8 +65,8 @@ class Search
      */
     public function searchSameNumberWithin($prevs)
     {
-        $result = array_filter($this->NumbersPastData->getData(), function ($v, $k) use ($prevs) {
-            return $this->NumbersPastData->inPrevNumbers($k, $prevs);
+        $result = array_filter($this->numbersPastData->getData(), function ($v, $k) use ($prevs) {
+            return $this->numbersPastData->inPrevNumbers($k, $prevs);
         }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
     }
@@ -77,8 +77,8 @@ class Search
      */
     public function searchNumbersDigitPattern($prevs, $step, $digit)
     {
-        $result = array_filter($this->NumbersPastData->getData(), function ($v, $k) use ($prevs, $step, $digit) {
-            echo $this->NumbersPastData->getPatternWithinPrevs($k, $prevs, $step, $digit);
+        $result = array_filter($this->numbersPastData->getData(), function ($v, $k) use ($prevs, $step, $digit) {
+            echo $this->numbersPastData->getPatternWithinPrevs($k, $prevs, $step, $digit);
             return;
         }, ARRAY_FILTER_USE_BOTH);
         $this->searchResult = $result;
@@ -106,7 +106,7 @@ class Search
     public function getRoundListByNumbers($numbers)
     {
         $result = [];
-        foreach ($this->NumbersPastData as $key => $item) {
+        foreach ($this->numbersPastData as $key => $item) {
             if ($item['numbers'] == $numbers) {
                 $result[] = $key;
             }

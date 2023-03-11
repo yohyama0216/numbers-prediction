@@ -12,12 +12,12 @@ class DrawingNumbers3Result
 
     public function __construct($numbers, $prizeNumbers3)
     {
-        $this->Numbers = $numbers;
+        $this->numbers = $numbers;
         $this->PrizeNumbers3 = $prizeNumbers3;
     }
 
     public function getNumbers()
     {
-        return $this->Numbers;
+        return $this->numbers;
     }
 }
