@@ -69,6 +69,12 @@ $books = App\Book::with(['author', 'publisher'])->get();
         1. Service
         1. Repository
         1. ドメインオブジェクト
+1. コーディングルールなど
+    1. PHPCS .\vendor\bin\phpcs.bat --standard=phpcs.xml
+    1. PHPCBF .\vendor\bin\phpcbf.bat --standard=phpcs.xml
+        1. （手作業で修正したときに余計なところまで変換してしまった気もするが、後で対応）
+    1. PHPUnit あとで
+    1. PHPStan　あとで
 
 todo
 テーブルまとめる
@@ -78,3 +84,5 @@ Lotoにも取り組む
 
 フォーム、表などはコンポーネント化する
 bootstrapの標準でデザインをする　チーとシート使ってもいいかも？
+
+
