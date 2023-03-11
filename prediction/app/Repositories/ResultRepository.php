@@ -6,7 +6,7 @@ use App\Models\Entities\DrawingResult;
 use App\Models\Entities\DrawingResultList;
 use App\Models\Entities\CountResult;
 use App\Models\Entities\CountResultList;
-use App\Models\Eloquent\Result;
+use App\Models\Eloquent\Numbers3Result;
 use App\Models\Value\Round;
 use App\Models\Value\Date;
 use App\Models\Value\Numbers;
@@ -19,7 +19,7 @@ class ResultRepository
     public function getCountList($length, $order = 'desc')
     {
         $countList = [];
-        $query = Result::groupBy('numbers')
+        $query = Numbers3Result::groupBy('numbers')
             ->select('browser', DB::raw('numbers, count(*) as count'))
             ->orderBy('count', $order)
             ->limit($length);
@@ -36,19 +36,18 @@ class ResultRepository
         return new CountResultList($list);
     }
 
-    public function find($searchCondition)
+    public function find($table, $searchCondition)
     {
-        $collection = Result::with(['drawing', 'prize'])->get();
-        $filtered = $collection->filter(function ($result) use ($searchCondition) {
-            return $searchCondition->match($result);
-        });
-
-        return $this->toDrawingResultList($searchCondition, $filtered->slice(0, 20));
+        if ($searchCondition->hasConsecutiveCondition()) {
+            // $collection = DB::table($table)->join() joinどうする？
+        }
+        $collection = DB::table($table)->whereRaw($searchCondition->createWhereQuery())->get();
+        return $this->toDrawingResultList($searchCondition, $collection->slice(0, 20));
     }
 
     public function findAll()
     {
-        $collection = Result::with(['drawing', 'prize'])->get();
+        $collection = Numbers3Result::all();
         return $this->toDrawingResultList(null, $collection);
     }
 
@@ -56,15 +55,16 @@ class ResultRepository
     {
         $list = [];
         foreach ($collection as $item) {
+            $item = (array)$item;
             $list[] = new DrawingResult(
-                new Round($item['drawing']['round']),
-                new Date($item['drawing']['date']),
+                new Round($item['round']),
+                new Date($item['date']),
                 new Numbers($item['numbers']),
                 new Prize(
-                    new Money($item['prize']['straight']),
-                    new Money($item['prize']['box']),
-                    new Money($item['prize']['set']),
-                    new Money($item['prize']['mini'])
+                    new Money($item['straight']),
+                    new Money($item['box']),
+                    new Money($item['set']),
+                    new Money($item['mini'])
                 )
             );
         }

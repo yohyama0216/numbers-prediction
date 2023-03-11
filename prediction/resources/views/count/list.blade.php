@@ -3,7 +3,6 @@
 @section('title','統計')
 
 @section('content')
-@include('layouts.sidebarmenu', ['current' => 'statistics'])
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">統計</h1>
@@ -44,7 +43,7 @@
             </thead>
             <tbody>
                 <td>
-                @foreach($data as $key => $item)
+                    @foreach($data as $key => $item)
                     <tr>
                         <td>{{$item->getTarget()}}</td>
                         <td>{{$item->getCount()}}</td>
@@ -58,7 +57,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </td>
             </tbody>
         </table>
@@ -70,9 +69,9 @@
 @endsection
 
 @section('side')
-  @parent
-  <ul>
+@parent
+<ul>
     <li>ccc</li>
     <li>ddd</li>
-  </ul>
+</ul>
 @endsection

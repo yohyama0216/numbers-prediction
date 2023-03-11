@@ -14,13 +14,13 @@ class SearchController extends Controller
     public function __construct(
         SearchService $searchService,
     ) {
-        $this->SearchService = $searchService;
+        $this->searchService = $searchService;
     }
 
     public function index(Request $request)
     {
         $searchCondition = new SearchCondition($request);
-        $data = $this->SearchService->findByCondition($searchCondition);
+        $data = $this->searchService->findByCondition($searchCondition);
         return view('search.list', compact('data'));
     }
 }

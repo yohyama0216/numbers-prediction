@@ -32,4 +32,18 @@ class SearchCondition
         }
         return true;
     }
+
+    public function createWhereQuery()
+    {
+        if ($this->numbers) {
+            return "`numbers` = $this->numbers";
+        } else {
+            return "1 = 1";
+        }
+    }
+
+    public function hasConsecutiveCondition()
+    {
+        return false;
+    }
 }

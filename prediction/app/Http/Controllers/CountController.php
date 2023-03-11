@@ -12,12 +12,12 @@ class CountController extends Controller
     public function __construct(
         CountService $countService
     ) {
-        $this->CountService = $countService;
+        $this->countService = $countService;
     }
 
     public function index(Request $request)
     {
-        $data = $this->CountService->getCountTop5();
+        $data = $this->countService->getCountTop5();
         return view('count.list', compact('data'));
     }
 }

@@ -19,9 +19,8 @@ class SearchService
         return $this->resultRepository->findAll();
     }
 
-
     public function findByCondition($searchCondition)
     {
-        return $this->resultRepository->find($searchCondition);
+        return $this->resultRepository->find('numbers3_results', $searchCondition); // tableもSearchConditionに入れるか？
     }
 }

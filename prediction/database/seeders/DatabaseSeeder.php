@@ -20,32 +20,14 @@ class DatabaseSeeder extends Seeder
 
     private function runDrawings()
     {
-        DB::table('drawings')->truncate();
+        DB::table('numbers3_results')->truncate();
         $data = json_decode(file_get_contents(database_path('data\numbers3ResultList.json')), true);
 
-        $drawing_id = 1;
-        $result_id = 1;
         foreach ($data as $key => $item) {
             $drawing = [
-                'id' => $drawing_id,
-                'type' => 'Number3',
-                'date' => $item['date'],
                 'round' => $key,
-                'created_at' => now(),
-                'updated_at' => now()
-            ];
-            DB::table('drawings')->insert($drawing);
-
-            $result = [
-                'drawing_id' => $drawing_id,
+                'date' => $item['date'],
                 'numbers' => $item['numbers'],
-                'created_at' => now(),
-                'updated_at' => now()
-            ];
-            DB::table('results')->insert($result);
-
-            $prize = [
-                'result_id' => $result_id,
                 'straight' => 100000,
                 'box' => 30000,
                 'set' => 60000,
@@ -53,10 +35,7 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ];
-            DB::table('prizes')->insert($prize);
-
-            $drawing_id++;
-            $result_id++;
+            DB::table('numbers3_results')->insert($drawing);
         }
     }
 }
