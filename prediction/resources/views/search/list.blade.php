@@ -14,16 +14,6 @@
         <div class="col-md-3">
           <!-- <label for="validationCustomUsername" class="form-label">Username</label> -->
           <div class="input-group has-validation">
-            <span class="input-group-text" id="inputGroupPrepend">回号</span>
-            <input type="text" class="form-control" placeholder="1111" aria-describedby="inputGroupPrepend">
-            <div class="invalid-feedback">
-              Please choose a username.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <!-- <label for="validationCustomUsername" class="form-label">Username</label> -->
-          <div class="input-group has-validation">
             <span class="input-group-text" id="inputGroupPrepend">当せん数字</span>
             <input type="text" class="form-control" name="numbers" placeholder="777" aria-describedby="inputGroupPrepend">
             <div class="invalid-feedback">
@@ -39,21 +29,22 @@
             <input type="text" class="form-control" name="" placeholder="2002-01-01" aria-label="dateTo">
           </div>
         </div>
+        <div class="col-md-3">
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">特殊な数字</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option selected>選択</option>
+              <option value="1">全桁が同じ数字（例、111）</option>
+              <option value="2">階段数字（例、123）</option>
+              <option value="3">鏡数字（例、121）</option>
+              <option value="4">ひっぱり数字（例、121）</option>
+            </select>
+          </div>
+        </div>
       </div>
       <h4 id="striped-rows">詳細検索<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="#" href="#striped-rows" style="padding-left: 0.375em;"></a></h3>
         <div class="row">
-          <div class="col-md-6">
-            <div class="input-group mb-3">
-              <label class="input-group-text" for="inputGroupSelect01">特殊な数字</label>
-              <select class="form-select" id="inputGroupSelect01">
-                <option selected>選択</option>
-                <option value="1">全桁が同じ数字（例、111）</option>
-                <option value="2">階段数字（例、123）</option>
-                <option value="3">鏡数字（例、121）</option>
-                <option value="4">ひっぱり数字（例、121）</option>
-              </select>
-            </div>
-          </div>
+
           <div class="col-md-6">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">出現パターン</span>

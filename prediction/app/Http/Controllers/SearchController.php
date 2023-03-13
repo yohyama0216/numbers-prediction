@@ -17,14 +17,17 @@ class SearchController extends Controller
         $this->searchService = $searchService;
     }
 
-    public function index(Request $request)
+    public function single(Request $request)
     {
         $searchCondition = new SearchCondition($request);
-        $data = $this->searchService->findByCondition($searchCondition);
-        if ($searchCondition->hasConsecutiveCondition()) {
-            return view('search.consecutive_list', compact('data'));
-        } else {
-            return view('search.list', compact('data'));
-        }
+        $data = $this->searchService->findSingleByCondition($searchCondition);
+        return view('search.list', compact('data'));
+    }
+
+    public function double(Request $request)
+    {
+        $searchCondition = new SearchCondition($request);
+        $data = $this->searchService->findDoubleByCondition($searchCondition);
+        return view('search.consecutive_list', compact('data'));
     }
 }

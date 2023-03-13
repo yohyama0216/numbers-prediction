@@ -38,26 +38,17 @@ class ResultRepository
         return new CountResultList($list);
     }
 
-    public function find($table, $searchCondition)
+    public function findSingle($searchCondition)
     {
-        if ($searchCondition->hasConsecutiveCondition()) {
-            $query = DB::table($table . ' as t1')->leftJoin($table . ' as t2', DB::raw('t1.id - 1'), '=', 't2.id')
-                ->select(
-                    "t1.numbers as t1_numbers",
-                    "t2.numbers as t2_numbers",
-                    DB::raw("t1.numbers || ' -> ' || t2.numbers as consecutive_numbers"),
-                    "t2.round as t2_round",
-                    "t1.round as t1_round",
-                    DB::raw("t1.round || ' -> ' || t2.round as consecutive_round"),
-                    "t2.date as t2_date",
-                    "t1.date as t1_date",
-                    DB::raw("t1.date || ' -> ' || t2.date as consecutive_date")
-                );
-            return $this->toConsecutiveResultList($searchCondition, $query->get()->slice(0, 20));
-        } else {
-            $query = DB::table($table)->whereRaw($searchCondition->createWhereQuery());
-            return  $this->toDrawingResultList($searchCondition, $query->get()->slice(0, 20));
-        }
+        $table = $searchCondition->getTargetTable();
+        $query = DB::table($table);
+        return  $this->toDrawingResultList($searchCondition, $query->get()->slice(0, 20));
+    }
+
+    public function findDouble($searchCondition)
+    {
+        $query = DB::table('VIEW_DOUBLE_NUMBERS3');
+        return $this->toConsecutiveResultList($searchCondition, $query->get()->slice(0, 20));
     }
 
     public function findAll()

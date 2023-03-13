@@ -19,8 +19,13 @@ class SearchService
         return $this->resultRepository->findAll();
     }
 
-    public function findByCondition($searchCondition)
+    public function findSingleByCondition($searchCondition)
     {
-        return $this->resultRepository->find('numbers3_results', $searchCondition); // tableもSearchConditionに入れるか？
+        return $this->resultRepository->findSingle($searchCondition);
+    }
+
+    public function findDoubleByCondition($searchCondition)
+    {
+        return $this->resultRepository->findDouble($searchCondition);
     }
 }

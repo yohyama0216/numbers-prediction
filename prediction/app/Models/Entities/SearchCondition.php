@@ -2,14 +2,18 @@
 
 namespace App\Models\Entities;
 
+use Illuminate\Http\Request;
+
 class SearchCondition
 {
+    private $path;
     private $numbers;
     private $dateFrom;
     private $dateTo;
 
-    public function __construct($request)
+    public function __construct(Request $request)
     {
+        $this->path = $request->path();
         $this->numbers = $request->query('numbers');
         $this->dateFrom = $request->query('dateFrom');
         $this->dateTo = $request->query('dateTo');
@@ -44,6 +48,14 @@ class SearchCondition
 
     public function hasConsecutiveCondition()
     {
-        return true;
+        return false;
+    }
+
+    public function getTargetTable()
+    {
+        $type = explode('/',$this->path);
+        if (in_array($type[1],['numbers3','numbers4'])){
+            return $type[1]."_results";
+        }
     }
 }
